@@ -15,8 +15,7 @@ body{
  font-family:Arial,sans-serif;
  background:linear-gradient(-45deg,#080808,#30070b,#10090a,#650d17);
  background-size:400% 400%;
- animation:bg 18s ease infinite;
- overflow-x:hidden;
+ animation:bg 14s ease infinite;
 }
 
 @keyframes bg{
@@ -28,399 +27,432 @@ body{
 .particles{
  position:fixed;
  inset:0;
- pointer-events:none;
  overflow:hidden;
+ pointer-events:none;
  z-index:0;
 }
 
 .particle{
  position:absolute;
- bottom:-20px;
- width:4px;
- height:4px;
- background:#ff344d;
+ bottom:-15px;
+ width:3px;
+ height:3px;
  border-radius:50%;
- opacity:.45;
- box-shadow:0 0 10px #ff203c;
- animation:rise linear infinite;
+ background:#ff3545;
+ box-shadow:0 0 8px 2px #ff354577;
+ opacity:0;
+ animation:floatUp linear infinite;
 }
 
-@keyframes rise{
- from{transform:translateY(0);opacity:0}
- 15%{opacity:.5}
- to{transform:translateY(-110vh);opacity:0}
+@keyframes floatUp{
+ 0%{transform:translateY(0);opacity:0}
+ 10%{opacity:.55}
+ 85%{opacity:.35}
+ 100%{transform:translateY(-110vh);opacity:0}
 }
 
-header,main,footer{
+header,nav,.hero,.section,footer{
  position:relative;
  z-index:1;
 }
 
 header{
+ padding:22px 12px;
  text-align:center;
- padding:28px 15px 15px;
+ background:#080808dd;
+ border-bottom:2px solid #c21e2b;
 }
 
-header h1{
- color:#ff4055;
- letter-spacing:4px;
- font-size:30px;
- margin:5px;
- text-shadow:0 0 15px #9b1025;
-}
+header h1{margin:0;font-size:25px}
+header span{color:#ff3545}
 
-nav{
- display:flex;
- justify-content:center;
- flex-wrap:wrap;
- gap:22px;
- padding:15px;
-}
-
+nav{padding:15px;text-align:center}
 nav a{
- color:#ddd;
+ color:#ff5965;
+ margin:10px;
  text-decoration:none;
- font-weight:bold;
- transition:.2s;
 }
 
-nav a:hover{color:#ff4055}
-
-main{
- max-width:1100px;
- margin:auto;
- padding:15px;
-}
-
-.hero{
- text-align:center;
- padding:35px 10px;
-}
-
-.hero h2{
- font-size:clamp(27px,5vw,46px);
- color:#fff;
- margin:5px;
- text-shadow:0 0 18px #b91e35;
-}
-
-.hero p{color:#bbb}
+.hero{text-align:center;padding:40px 15px 25px}
+.hero h2{font-size:35px;margin:0}
+.hero p{color:#ccc}
 
 .stats{
- display:grid;
- grid-template-columns:repeat(3,1fr);
+ display:flex;
+ justify-content:center;
  gap:12px;
- margin:20px 0 35px;
+ flex-wrap:wrap;
+ margin-top:20px;
 }
 
 .stat{
- background:#140d10;
- border:1px solid #66202d;
- border-radius:12px;
- padding:18px 8px;
- text-align:center;
+ background:#171719;
+ border:1px solid #542027;
+ border-radius:9px;
+ padding:12px 20px;
 }
 
 .stat strong{
  display:block;
- color:#ff4055;
- font-size:25px;
+ color:#ff4655;
+ font-size:21px;
+ text-align:center;
 }
 
-.stat span{
- color:#aaa;
- font-size:12px;
+.stat small{color:#aaa}
+
+.section{
+ max-width:950px;
+ margin:25px auto;
+ padding:15px;
 }
 
-.section-title{
- border-left:4px solid #ff4055;
- padding-left:12px;
- margin:35px 0 18px;
+.section h2{
+ border-bottom:2px solid #c21e2b;
+ padding-bottom:12px;
 }
 
-.search{
+.search,.field{
  width:100%;
- padding:13px;
- border-radius:8px;
- border:1px solid #66202d;
- background:#100c0e;
+ padding:14px;
+ border-radius:9px;
+ border:1px solid #79232c;
+ background:#111;
  color:white;
+ font-size:15px;
  outline:none;
- margin-bottom:18px;
+ margin:10px 0 18px;
 }
 
-.search:focus{border-color:#ff4055}
-
-.demon-grid{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
- gap:15px;
-}
+.search:focus,.field:focus{border-color:#ff3545}
 
 .demon{
- background:linear-gradient(145deg,#1b1013,#100b0d);
- border:1px solid #54202a;
+ display:flex;
+ align-items:center;
+ gap:15px;
+ background:#111c;
+ border:1px solid #542027;
  border-radius:12px;
- overflow:hidden;
+ padding:13px;
+ margin:11px 0;
  transition:.2s;
 }
 
 .demon:hover{
- transform:translateY(-4px);
- border-color:#ff4055;
- box-shadow:0 5px 20px #0008;
-}
-
-.demon img{
- width:100%;
- aspect-ratio:16/9;
- object-fit:cover;
- display:block;
-}
-
-.demon-info{padding:13px}
-
-.demon-top{
- display:flex;
- align-items:center;
- gap:10px;
+ background:#291015;
+ transform:translateY(-2px);
 }
 
 .rank{
- background:#a91d32;
- color:white;
- border-radius:7px;
- padding:7px 10px;
+ font-size:23px;
  font-weight:bold;
+ color:#ff4655;
+ min-width:42px;
+ text-align:center;
 }
 
-.demon h3{
- margin:0;
- font-size:18px;
+.level-image{
+ width:110px;
+ height:auto;
+ aspect-ratio:16 / 9;
+ object-fit:cover;
+ object-position:center;
+ background:#080808;
+ border-radius:8px;
+ border:1px solid #79232c;
+ flex-shrink:0;
+ display:block;
 }
 
-.demon p{
- color:#aaa;
- font-size:13px;
- margin:9px 0;
-}
+.info{flex:1;min-width:0}
+.info h3{margin:0 0 5px}
+.info p{margin:0;color:#aaa;font-size:12px}
 
 .watch{
- display:inline-block;
- background:#b51d35;
- color:white;
+ background:#a81422;
  padding:9px 13px;
- border-radius:6px;
+ color:white;
  text-decoration:none;
- font-size:13px;
+ border-radius:7px;
+ font-size:12px;
  font-weight:bold;
+ white-space:nowrap;
 }
 
-.watch:hover{background:#e52b46}
+.watch:hover{background:#ed2638}
 
-.players{
- display:grid;
+.community{
+ display:flex;
+ flex-wrap:wrap;
  gap:12px;
 }
 
-.player{
- background:#160e11;
- border:1px solid #57202b;
+.community a{
+ flex:1;
+ min-width:220px;
+ padding:18px;
+ background:#171719;
+ border:1px solid #542027;
  border-radius:10px;
- padding:14px;
+ text-decoration:none;
+ color:white;
 }
 
-.player-head{
+.community a:hover{background:#291015}
+.community strong{display:block;margin-bottom:6px}
+.community small{color:#aaa}
+
+/* Player leaderboard */
+.points-note{
+ color:#aaa;
+ font-size:13px;
+ line-height:1.6;
+}
+
+.player-form{
  display:flex;
- justify-content:space-between;
- align-items:center;
  gap:10px;
  flex-wrap:wrap;
 }
 
-.player-name{
- font-size:18px;
- font-weight:bold;
+.player-form .field{
+ flex:1;
+ min-width:180px;
+ margin:5px 0 15px;
 }
 
-.points{
- color:#ff5265;
+.action{
+ background:#a81422;
+ color:white;
+ border:0;
+ border-radius:8px;
+ padding:12px 16px;
  font-weight:bold;
+ cursor:pointer;
+}
+
+.action:hover{background:#ed2638}
+
+.player-card{
+ background:#111c;
+ border:1px solid #542027;
+ border-radius:12px;
+ padding:14px;
+ margin:12px 0;
+}
+
+.player-top{
+ display:flex;
+ align-items:center;
+ gap:12px;
+ flex-wrap:wrap;
+}
+
+.player-rank{
+ color:#ff4655;
+ font-size:22px;
+ font-weight:bold;
+ min-width:30px;
+}
+
+.player-name{
+ flex:1;
+ min-width:100px;
+ font-weight:bold;
+ font-size:17px;
+}
+
+.player-points{
+ color:#ff5965;
+ font-weight:bold;
+ font-size:18px;
+}
+
+.player-meta{
+ color:#aaa;
+ font-size:12px;
+ margin-top:5px;
 }
 
 .player-actions{
  display:flex;
  gap:8px;
- margin-top:10px;
+ margin-top:12px;
  flex-wrap:wrap;
 }
 
-button{
- background:#a91d32;
- border:0;
- border-radius:6px;
- padding:9px 12px;
+.player-actions button{
+ background:#292929;
  color:white;
- font-weight:bold;
+ border:1px solid #542027;
+ border-radius:7px;
+ padding:9px 12px;
  cursor:pointer;
 }
 
-button:hover{background:#e52b46}
+.player-actions button:hover{background:#48151d}
 
-button.remove{background:#444}
-
-.completions{
- display:none;
- margin-top:12px;
- border-top:1px solid #49202a;
- padding-top:10px;
+.completion-panel{
+ border-top:1px solid #542027;
+ margin-top:14px;
+ padding-top:12px;
 }
 
-.completions.show{display:block}
+.completion-panel h4{margin:5px 0 12px}
 
-.completion{
+.demon-check{
  display:flex;
  align-items:center;
- gap:9px;
- padding:6px 0;
- color:#ddd;
- font-size:14px;
-}
-
-.completion input{accent-color:#ff4055}
-
-.add-player{
- display:flex;
- gap:8px;
- margin-bottom:15px;
-}
-
-.add-player input{
- flex:1;
- min-width:0;
- padding:12px;
+ gap:10px;
+ padding:9px;
+ margin:5px 0;
+ background:#171719;
  border-radius:7px;
- border:1px solid #66202d;
- background:#100c0e;
- color:white;
+ font-size:13px;
 }
 
-.community-grid{
- display:grid;
- grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
- gap:15px;
+.demon-check input{
+ accent-color:#ff3545;
+ width:17px;
+ height:17px;
 }
 
-.community{
- background:#160e11;
- border:1px solid #57202b;
+.demon-check span{flex:1}
+
+.check-points{
+ color:#ff5965;
+ font-size:12px;
+}
+
+.empty{
+ text-align:center;
+ padding:20px;
+ color:#aaa;
+ background:#111c;
+ border:1px dashed #542027;
  border-radius:10px;
- padding:18px;
-}
-
-.community h3{margin-top:0}
-
-.community a{
- color:#ff5265;
- text-decoration:none;
- font-weight:bold;
 }
 
 footer{
  text-align:center;
- color:#888;
- padding:30px 15px;
- font-size:13px;
+ padding:25px;
+ color:#999;
+ font-size:12px;
 }
 
 @media(max-width:500px){
- .stats{gap:7px}
- .stat{padding:13px 5px}
- .stat strong{font-size:21px}
- .hero{padding:25px 5px}
+ .hero h2{font-size:28px}
+ .demon{gap:8px;padding:9px}
+ .rank{font-size:17px;min-width:25px}
+ .level-image{
+  width:68px;
+  height:auto;
+  aspect-ratio:16 / 9;
+ }
+ .watch{padding:8px;font-size:10px}
+ .info h3{font-size:13px}
+ .info p{font-size:10px}
+ .player-points{font-size:15px}
+}
+
+@media(prefers-reduced-motion:reduce){
+ .particle{animation:none;display:none}
 }
 </style>
 </head>
 
 <body>
 
-<div class="particles" id="particles"></div>
+<div class="particles" id="particles" aria-hidden="true"></div>
 
 <header>
- <h1>MALDIVES DEMONLIST</h1>
- <nav>
-  <a href="#demonlist">Demonlist</a>
-  <a href="#players">Players</a>
-  <a href="#community">Discord</a>
- </nav>
+ <h1>MALDIVES <span>DEMONLIST</span></h1>
+ <small>GEOMETRY DASH COMMUNITY</small>
 </header>
 
-<main>
+<nav>
+ <a href="#list">Demonlist</a>
+ <a href="#players">Players</a>
+ <a href="#discord">Discord</a>
+</nav>
 
-<section class="hero">
- <h2>THE MALDIVES TOP 150 DEMONLIST</h2>
- <p>Tracking the hardest Geometry Dash completions in Maldives.</p>
-</section>
+<div class="hero">
+ <h2>THE MALDIVES<br>
+ <span style="color:#ff3545">TOP 150 DEMONLIST</span></h2>
+ <p>Recognizing the hardest Geometry Dash levels in Maldives.</p>
 
-<section class="stats">
- <div class="stat">
-  <strong id="levelCount">16</strong>
-  <span>RANKED LEVELS</span>
- </div>
- <div class="stat">
-  <strong>150</strong>
-  <span>MAX PLACEMENTS</span>
- </div>
- <div class="stat">
-  <strong id="playerCount">2</strong>
-  <span>RANKED PLAYERS</span>
- </div>
-</section>
-
-<section id="demonlist">
- <h2 class="section-title">Demonlist</h2>
- <input class="search" id="demonSearch" placeholder="Search demons...">
- <div class="demon-grid" id="demonGrid"></div>
-</section>
-
-<section id="players">
- <h2 class="section-title">Player Leaderboard</h2>
-
- <div class="add-player">
-  <input id="newPlayer" placeholder="Enter player username">
-  <button onclick="addPlayer()">Add</button>
- </div>
-
- <input class="search" id="playerSearch" placeholder="Search players...">
- <div class="players" id="playerList"></div>
-</section>
-
-<section id="community">
- <h2 class="section-title">Communities</h2>
-
- <div class="community-grid">
-  <div class="community">
-   <h3>Maldives Geometry Dash Demonlist</h3>
-   <p>Join the Maldives Geometry Dash community.</p>
-   <a href="https://discord.gg/QNr8QHhFw" target="_blank">Join Discord</a>
+ <div class="stats">
+  <div class="stat">
+   <strong id="total">16</strong>
+   <small>Ranked levels</small>
   </div>
-
-  <div class="community">
-   <h3>Maldives PvP Community</h3>
-   <p>Connect with the Maldives PvP community.</p>
-   <a href="https://discord.gg/AhNXX7yZJ" target="_blank">Join Discord</a>
+  <div class="stat">
+   <strong>150</strong>
+   <small>Maximum placements</small>
+  </div>
+  <div class="stat">
+   <strong id="playerTotal">2</strong>
+   <small>Ranked players</small>
   </div>
  </div>
-</section>
+</div>
 
-</main>
+<div class="section" id="list">
+ <h2>🏆 Current Demonlist</h2>
+ <input class="search" id="search" type="search"
+ placeholder="Search levels...">
+ <div id="levels"></div>
+ <div class="empty" id="noResults" hidden>
+  No matching levels found.
+ </div>
+</div>
+
+<div class="section" id="players">
+ <h2>👑 Player Leaderboard</h2>
+
+ <p class="points-note">
+ Each demon gives points according to its placement:
+ #1 = 150 points, #2 = 149 points, and so on.
+ Players are automatically sorted by their total points.
+ </p>
+
+ <input class="search" id="playerSearch" type="search"
+ placeholder="Search players...">
+
+ <h3>Add a player</h3>
+ <div class="player-form">
+  <input class="field" id="newPlayer"
+   placeholder="Player username" maxlength="24">
+  <button class="action" id="addPlayer">ADD PLAYER</button>
+ </div>
+
+ <div id="playersList"></div>
+ <div class="empty" id="noPlayers" hidden>
+  No players found.
+ </div>
+</div>
+
+<div class="section" id="discord">
+ <h2>🌐 Communities</h2>
+ <div class="community">
+  <a href="https://discord.gg/QNr8QHhFw" target="_blank" rel="noopener noreferrer">
+   <strong>Maldives Geometry Dash Demonlist</strong>
+   <small>Join the Geometry Dash community ↗</small>
+  </a>
+  <a href="https://discord.gg/AhNXX7yZJ" target="_blank" rel="noopener noreferrer">
+   <strong>Maldives PvP Community</strong>
+   <small>Minecraft PvP community ↗</small>
+  </a>
+ </div>
+</div>
 
 <footer>
- Maldives Demonlist — Community project.
- Not affiliated with Pointercrate.
+ Maldives Geometry Dash Demonlist<br>
+ Community project • Not affiliated with Pointercrate
 </footer>
 
 <script>
+/* DEMONLIST DATA */
 const demons = [
  {rank:1,name:"Firework",video:"QBe5x2o9v2w"},
  {rank:2,name:"Unknown",video:"a1sQxQqU6EM"},
@@ -440,172 +472,302 @@ const demons = [
  {rank:16,name:"Permafrost Mountain",video:"-jlOsjCoTJM"}
 ];
 
+/* Points are based on the actual demon rank. */
+function pointsForRank(rank){
+ return 151 - rank;
+}
+
+function playerPoints(player){
+ return player.completed.reduce((sum,rank)=>{
+  return sum + pointsForRank(rank);
+ },0);
+}
+
+/* SHOW DEMONLIST */
+const levelsContainer = document.getElementById("levels");
+
+demons.forEach(demon=>{
+ const row = document.createElement("div");
+ row.className = "demon";
+ row.dataset.name = demon.name.toLowerCase();
+
+ const rank = document.createElement("div");
+ rank.className = "rank";
+ rank.textContent = "#" + demon.rank;
+
+ const imageLink = document.createElement("a");
+ imageLink.href = "https://youtu.be/" + demon.video;
+ imageLink.target = "_blank";
+ imageLink.rel = "noopener noreferrer";
+
+ const image = document.createElement("img");
+ image.className = "level-image";
+ image.src = "https://img.youtube.com/vi/" + demon.video + "/hqdefault.jpg";
+ image.alt = demon.name + " thumbnail";
+ imageLink.appendChild(image);
+
+ const info = document.createElement("div");
+ info.className = "info";
+
+ const title = document.createElement("h3");
+ title.textContent = demon.name;
+
+ const description = document.createElement("p");
+ description.textContent = "Difficulty: TBD • Creator: TBD";
+
+ info.append(title,description);
+
+ const watch = document.createElement("a");
+ watch.className = "watch";
+ watch.href = imageLink.href;
+ watch.target = "_blank";
+ watch.rel = "noopener noreferrer";
+ watch.textContent = "WATCH ↗";
+
+ row.append(rank,imageLink,info,watch);
+ levelsContainer.appendChild(row);
+});
+
+document.getElementById("total").textContent = demons.length;
+
+/* LEVEL SEARCH */
+document.getElementById("search").addEventListener("input",function(){
+ const query = this.value.toLowerCase();
+ let visible = 0;
+
+ document.querySelectorAll(".demon").forEach(level=>{
+  const match = level.dataset.name.includes(query);
+  level.style.display = match ? "flex" : "none";
+  if(match) visible++;
+ });
+
+ document.getElementById("noResults").hidden = visible !== 0;
+});
+
+/* PLAYER DATA */
 const STORAGE_KEY = "maldivesDemonProgressV1";
 
-let players = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [
- {name:"snappedlol",completed:demons.map(d=>d.rank)},
- {name:"Hxssuuu",completed:[11,14,16]}
+const startingPlayers = [
+ {
+  name:"snappedlol",
+  completed:demons.map(d=>d.rank)
+ },
+ {
+  name:"Hxssuuu",
+  completed:[11,14,16]
+ }
 ];
+
+let players;
+
+try{
+ const saved = localStorage.getItem(STORAGE_KEY);
+ players = saved ? JSON.parse(saved) : startingPlayers;
+ if(!Array.isArray(players)) players = startingPlayers;
+}catch(error){
+ players = startingPlayers;
+}
+
+const openEditors = new Set();
 
 function savePlayers(){
  localStorage.setItem(STORAGE_KEY,JSON.stringify(players));
 }
 
-function renderDemons(filter=""){
- const grid=document.getElementById("demonGrid");
- grid.innerHTML="";
+/* CLEAN AND VALIDATE SAVED PLAYER DATA */
+players = players
+ .filter(p=>p && typeof p.name === "string" && Array.isArray(p.completed))
+ .map(p=>({
+  name:p.name.slice(0,24),
+  completed:[...new Set(
+   p.completed.filter(rank=>
+    Number.isInteger(rank) &&
+    demons.some(d=>d.rank===rank)
+   )
+  )]
+ }));
 
- demons.filter(d=>d.name.toLowerCase().includes(filter.toLowerCase()))
- .forEach(d=>{
-  const card=document.createElement("div");
-  card.className="demon";
-
-  card.innerHTML=`
-   <img src="https://img.youtube.com/vi/${d.video}/hqdefault.jpg"
-        alt="${d.name} thumbnail"
-        loading="lazy">
-   <div class="demon-info">
-    <div class="demon-top">
-     <span class="rank">#${d.rank}</span>
-     <h3>${d.name}</h3>
-    </div>
-    <p>Difficulty: Extreme Demon</p>
-    <a class="watch" href="https://www.youtube.com/watch?v=${d.video}"
-       target="_blank">WATCH</a>
-   </div>
-  `;
-
-  grid.appendChild(card);
- });
+if(!localStorage.getItem(STORAGE_KEY)){
+ savePlayers();
 }
 
-function getPoints(player){
- return player.completed.reduce((total,rank)=>{
-  return total+(151-rank);
- },0);
-}
+/* ADD PLAYER */
+document.getElementById("addPlayer").addEventListener("click",()=>{
+ const input = document.getElementById("newPlayer");
+ const name = input.value.trim();
 
-function renderPlayers(filter=""){
- const list=document.getElementById("playerList");
- list.innerHTML="";
-
- const sorted=[...players].sort((a,b)=>getPoints(b)-getPoints(a));
-
- sorted.filter(p=>p.name.toLowerCase().includes(filter.toLowerCase()))
- .forEach(player=>{
-  const index=players.indexOf(player);
-  const card=document.createElement("div");
-  card.className="player";
-
-  const completed=demons.filter(d=>player.completed.includes(d.rank));
-
-  card.innerHTML=`
-   <div class="player-head">
-    <span class="player-name">${escapeHTML(player.name)}</span>
-    <span class="points">${getPoints(player)} points</span>
-   </div>
-
-   <div class="player-actions">
-    <button onclick="toggleCompletions(${index})">Edit completions</button>
-    <button class="remove" onclick="removePlayer(${index})">Remove</button>
-   </div>
-
-   <div class="completions" id="completions-${index}">
-    ${demons.map(d=>`
-     <label class="completion">
-      <input type="checkbox"
-       ${player.completed.includes(d.rank)?"checked":""}
-       onchange="toggleDemon(${index},${d.rank},this.checked)">
-      #${d.rank} — ${d.name}
-     </label>
-    `).join("")}
-   </div>
-  `;
-
-  list.appendChild(card);
- });
-
- document.getElementById("playerCount").textContent=players.length;
-}
-
-function escapeHTML(value){
- return String(value).replace(/[&<>"']/g,char=>({
-  "&":"&amp;",
-  "<":"&lt;",
-  ">":"&gt;",
-  '"':"&quot;",
-  "'":"&#39;"
- }[char]));
-}
-
-function addPlayer(){
- const input=document.getElementById("newPlayer");
- const name=input.value.trim();
-
- if(!name)return;
-
- if(players.some(p=>p.name.toLowerCase()===name.toLowerCase())){
-  alert("Player already exists!");
+ if(!name){
+  alert("Enter a player username.");
   return;
  }
 
- players.push({name,completed:[]});
- input.value="";
- savePlayers();
- renderPlayers(document.getElementById("playerSearch").value);
-}
-
-function removePlayer(index){
- if(!confirm("Remove this player?"))return;
-
- players.splice(index,1);
- savePlayers();
- renderPlayers(document.getElementById("playerSearch").value);
-}
-
-function toggleCompletions(index){
- document.getElementById("completions-"+index).classList.toggle("show");
-}
-
-function toggleDemon(index,rank,checked){
- const completed=players[index].completed;
-
- if(checked&&!completed.includes(rank)){
-  completed.push(rank);
+ if(players.some(p=>p.name.toLowerCase()===name.toLowerCase())){
+  alert("That player already exists.");
+  return;
  }
 
- if(!checked){
-  players[index].completed=completed.filter(r=>r!==rank);
- }
+ players.push({
+  name:name.slice(0,24),
+  completed:[]
+ });
 
+ input.value = "";
  savePlayers();
- renderPlayers(document.getElementById("playerSearch").value);
+ renderPlayers();
+});
+
+document.getElementById("newPlayer").addEventListener("keydown",event=>{
+ if(event.key==="Enter"){
+  document.getElementById("addPlayer").click();
+ }
+});
+
+/* RENDER PLAYER LEADERBOARD */
+function renderPlayers(){
+ const container = document.getElementById("playersList");
+ const query = document.getElementById("playerSearch").value.toLowerCase();
+
+ container.replaceChildren();
+
+ const sorted = [...players].sort((a,b)=>{
+  return playerPoints(b)-playerPoints(a);
+ });
+
+ let visible = 0;
+
+ sorted.forEach(player=>{
+  if(!player.name.toLowerCase().includes(query)) return;
+
+  visible++;
+
+  const card = document.createElement("div");
+  card.className = "player-card";
+
+  const top = document.createElement("div");
+  top.className = "player-top";
+
+  const rank = document.createElement("div");
+  rank.className = "player-rank";
+  rank.textContent = "#" + visible;
+
+  const name = document.createElement("div");
+  name.className = "player-name";
+  name.textContent = player.name;
+
+  const points = document.createElement("div");
+  points.className = "player-points";
+  points.textContent = playerPoints(player).toLocaleString() + " pts";
+
+  const meta = document.createElement("div");
+  meta.className = "player-meta";
+  meta.textContent =
+   player.completed.length + "/" + demons.length + " demons completed";
+
+  top.append(rank,name,points);
+
+  const actions = document.createElement("div");
+  actions.className = "player-actions";
+
+  const edit = document.createElement("button");
+  edit.textContent = openEditors.has(player.name)
+   ? "Close completions"
+   : "Edit completions";
+
+  edit.addEventListener("click",()=>{
+   if(openEditors.has(player.name)){
+    openEditors.delete(player.name);
+   }else{
+    openEditors.add(player.name);
+   }
+   renderPlayers();
+  });
+
+  const remove = document.createElement("button");
+  remove.textContent = "Remove player";
+
+  remove.addEventListener("click",()=>{
+   if(!confirm("Remove " + player.name + " from the leaderboard?")) return;
+
+   players = players.filter(p=>p!==player);
+   openEditors.delete(player.name);
+   savePlayers();
+   renderPlayers();
+  });
+
+  actions.append(edit,remove);
+  card.append(top,meta,actions);
+
+  if(openEditors.has(player.name)){
+   const panel = document.createElement("div");
+   panel.className = "completion-panel";
+
+   const heading = document.createElement("h4");
+   heading.textContent = "Select completed demons";
+   panel.appendChild(heading);
+
+   demons.forEach(demon=>{
+    const label = document.createElement("label");
+    label.className = "demon-check";
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = player.completed.includes(demon.rank);
+
+    checkbox.addEventListener("change",()=>{
+     if(checkbox.checked){
+      if(!player.completed.includes(demon.rank)){
+       player.completed.push(demon.rank);
+      }
+     }else{
+      player.completed = player.completed.filter(
+       rank=>rank!==demon.rank
+      );
+     }
+
+     savePlayers();
+     renderPlayers();
+    });
+
+    const text = document.createElement("span");
+    text.textContent = "#" + demon.rank + " — " + demon.name;
+
+    const value = document.createElement("small");
+    value.className = "check-points";
+    value.textContent = "+" + pointsForRank(demon.rank) + " pts";
+
+    label.append(checkbox,text,value);
+    panel.appendChild(label);
+   });
+
+   card.appendChild(panel);
+  }
+
+  container.appendChild(card);
+ });
+
+ document.getElementById("playerTotal").textContent = players.length;
+ document.getElementById("noPlayers").hidden = visible !== 0;
 }
 
-document.getElementById("demonSearch").addEventListener("input",e=>{
- renderDemons(e.target.value);
-});
+document.getElementById("playerSearch").addEventListener("input",renderPlayers);
 
-document.getElementById("playerSearch").addEventListener("input",e=>{
- renderPlayers(e.target.value);
-});
-
-document.getElementById("levelCount").textContent=demons.length;
-
-renderDemons();
 renderPlayers();
 
-// Slow rising background particles
-const particleContainer=document.getElementById("particles");
+/* SLOW FLOATING PARTICLES */
+const particleArea = document.getElementById("particles");
 
 for(let i=0;i<28;i++){
- const particle=document.createElement("div");
- particle.className="particle";
- particle.style.left=Math.random()*100+"%";
- particle.style.animationDuration=(14+Math.random()*18)+"s";
- particle.style.animationDelay=(-Math.random()*25)+"s";
- particle.style.opacity=(0.2+Math.random()*0.4);
- particleContainer.appendChild(particle);
+ const particle = document.createElement("span");
+ particle.className = "particle";
+ particle.style.left = Math.random()*100 + "%";
+ particle.style.animationDuration = (28+Math.random()*30) + "s";
+ particle.style.animationDelay = (-Math.random()*55) + "s";
+
+ const size = 2+Math.random()*3;
+ particle.style.width = size + "px";
+ particle.style.height = size + "px";
+
+ particleArea.appendChild(particle);
 }
 </script>
 
