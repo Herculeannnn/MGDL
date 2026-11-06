@@ -6,7 +6,104 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>MGDL - Prominent Runs</title>
 <link rel="stylesheet" href="style.css">
+
+<style>
+.runs-container{
+ display:flex;
+ flex-direction:column;
+ gap:22px;
+ margin-top:25px;
+}
+
+.run-card{
+ background:linear-gradient(135deg,#181818,#260b0e);
+ border:1px solid #542027;
+ border-radius:14px;
+ overflow:hidden;
+ box-shadow:0 5px 20px #0006;
+}
+
+.run-info{
+ padding:18px;
+}
+
+.run-player{
+ color:#ff5252;
+ font-size:14px;
+ font-weight:bold;
+ text-transform:uppercase;
+ letter-spacing:1px;
+}
+
+.run-title{
+ font-size:23px;
+ margin:8px 0;
+}
+
+.run-details{
+ color:#aaa;
+ font-size:14px;
+ margin-bottom:14px;
+}
+
+.run-video{
+ display:block;
+ position:relative;
+ width:100%;
+ aspect-ratio:16/9;
+ background:#080808;
+ overflow:hidden;
+}
+
+.run-video img{
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ display:block;
+ transition:transform .3s;
+}
+
+.run-video:hover img{
+ transform:scale(1.04);
+}
+
+.play-button{
+ position:absolute;
+ top:50%;
+ left:50%;
+ transform:translate(-50%,-50%);
+ width:65px;
+ height:46px;
+ background:#e00000;
+ border-radius:13px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ color:white;
+ font-size:25px;
+}
+
+.run-video:hover .play-button{
+ background:#ff2020;
+}
+
+.run-date{
+ color:#888;
+ font-size:12px;
+ margin-top:12px;
+}
+
+.empty-runs{
+ text-align:center;
+ padding:40px 20px;
+ background:#171717;
+ border:1px solid #333;
+ border-radius:12px;
+ color:#aaa;
+}
+</style>
 </head>
+
 <body>
 
 <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
@@ -25,21 +122,28 @@
 </aside>
 
 <div class="main-content">
+
 <header>
-<h1>PROMINENT RUNS</h1>
+ <h1>PROMINENT RUNS</h1>
 </header>
 
 <main>
-<h2 class="section-title">Notable Achievements</h2>
-<p class="muted">Showcasing impressive Geometry Dash runs from the Maldives community.</p>
+ <h2 class="section-title">Notable Achievements</h2>
+ <p class="muted">Showcasing impressive Geometry Dash runs from the Maldives community.</p>
 
-<div class="panel">
-<h3>Prominent Runs</h3>
-<p class="muted">No runs have been added yet.</p>
-<p class="muted">Check back when new achievements are submitted!</p>
-</div>
+ <div class="runs-container" id="runsContainer">
 
+  <!-- RUN CARD TEMPLATE -->
+  <!-- Duplicate this article to add another run -->
+
+  <div class="empty-runs">
+   <h3>No prominent runs yet</h3>
+   <p>Achievements from the Maldives community will appear here.</p>
+  </div>
+
+ </div>
 </main>
+
 <footer>Maldives Geometry Dash Demonlist</footer>
 </div>
 
@@ -48,10 +152,85 @@ function toggleSidebar(){
  document.getElementById("sidebar").classList.toggle("open");
  document.getElementById("sidebarOverlay").classList.toggle("show");
 }
+
 const currentPage=location.pathname.split("/").pop()||"index.html";
+
 document.querySelectorAll(".sidebar a").forEach(a=>{
  if(a.dataset.page===currentPage)a.classList.add("active");
 });
+
+/*
+ADD RUNS HERE.
+
+Replace:
+PLAYER_NAME
+LEVEL_NAME
+PERCENTAGE
+DIFFICULTY
+YOUTUBE_VIDEO_ID
+COMPLETION_DATE
+
+Example video ID:
+https://www.youtube.com/watch?v=VIDEO_ID
+*/
+
+const prominentRuns = [
+ /*
+ {
+  player:"PLAYER_NAME",
+  level:"LEVEL_NAME",
+  percentage:"100%",
+  difficulty:"Extreme Demon",
+  video:"YOUTUBE_VIDEO_ID",
+  date:"COMPLETION_DATE"
+ }
+ */
+];
+
+const container=document.getElementById("runsContainer");
+
+if(prominentRuns.length){
+ container.innerHTML="";
+
+ prominentRuns.forEach(run=>{
+  const card=document.createElement("article");
+  card.className="run-card";
+
+  const videoURL="https://www.youtube.com/watch?v="+encodeURIComponent(run.video);
+  const thumbnail="https://img.youtube.com/vi/"+encodeURIComponent(run.video)+"/hqdefault.jpg";
+
+  card.innerHTML=`
+   <div class="run-info">
+    <div class="run-player">${escapeHTML(run.player)}</div>
+    <h3 class="run-title">${escapeHTML(run.level)}</h3>
+    <div class="run-details">
+     ${escapeHTML(run.difficulty)} · ${escapeHTML(run.percentage)}
+    </div>
+   </div>
+
+   <a class="run-video" href="${videoURL}" target="_blank" rel="noopener noreferrer">
+    <img src="${thumbnail}" alt="YouTube thumbnail for ${escapeHTML(run.level)}">
+    <span class="play-button">▶</span>
+   </a>
+
+   <div class="run-info">
+    <div class="run-date">Completed: ${escapeHTML(run.date)}</div>
+   </div>
+  `;
+
+  container.appendChild(card);
+ });
+}
+
+function escapeHTML(value){
+ return String(value).replace(/[&<>"']/g,char=>({
+  "&":"&amp;",
+  "<":"&lt;",
+  ">":"&gt;",
+  '"':"&quot;",
+  "'":"&#39;"
+ }[char]));
+}
 </script>
 
 </body>
