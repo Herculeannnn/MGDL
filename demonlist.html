@@ -9,21 +9,55 @@
 <script src="app.js" defer></script>
 </head>
 <body>
+
+<button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<aside class="sidebar" id="sidebar">
+ <div class="brand">MGDL</div>
+ <div class="sidebar-label">MAIN MENU</div>
+
+ <a href="index.html" data-page="index.html">⌂ Home</a>
+ <a href="demonlist.html" data-page="demonlist.html">🏆 Demonlist</a>
+ <a href="unrated.html" data-page="unrated.html">📋 Unrated</a>
+ <a href="players.html" data-page="players.html">👥 Players</a>
+ <a href="prominent-runs.html" data-page="prominent-runs.html">⭐ Prominent Runs</a>
+ <a href="community.html" data-page="community.html">💬 Community</a>
+</aside>
+
+<div class="main-content">
+
 <header>
 <h1>MALDIVES DEMONLIST</h1>
-<nav>
-<a href="index.html">Home</a>
-<a class="active" href="demonlist.html">Demonlist</a>
-<a href="unrated.html">Unrated</a>
-<a href="players.html">Players</a>
-<a href="community.html">Community</a>
-</nav>
 </header>
+
 <main>
 <h2 class="section-title">Demonlist</h2>
+
 <input class="search" id="demonSearch" placeholder="Search demons...">
+
 <div class="grid" id="demonGrid"></div>
 </main>
+
 <footer>Maldives Demonlist — Community project.</footer>
+
+</div>
+
+<script>
+function toggleSidebar(){
+ document.getElementById("sidebar").classList.toggle("open");
+ document.getElementById("sidebarOverlay").classList.toggle("show");
+}
+
+const currentPage = location.pathname.split("/").pop() || "index.html";
+
+document.querySelectorAll(".sidebar a").forEach(a=>{
+ if(a.dataset.page === currentPage){
+  a.classList.add("active");
+ }
+});
+</script>
+
 </body>
 </html>
