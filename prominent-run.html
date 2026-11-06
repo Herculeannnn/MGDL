@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MGDL - Prominent Runs</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<aside class="sidebar" id="sidebar">
+ <div class="brand">MGDL</div>
+ <div class="sidebar-label">MAIN MENU</div>
+
+ <a href="index.html" data-page="index.html"><span class="sidebar-icon">⌂</span> Home</a>
+ <a href="demonlist.html" data-page="demonlist.html"><span class="sidebar-icon">🏆</span> Demonlist</a>
+ <a href="unrated.html" data-page="unrated.html"><span class="sidebar-icon">📋</span> Unrated</a>
+ <a href="players.html" data-page="players.html"><span class="sidebar-icon">👥</span> Players</a>
+ <a href="prominent-runs.html" data-page="prominent-runs.html"><span class="sidebar-icon">⭐</span> Prominent Runs</a>
+ <a href="community.html" data-page="community.html"><span class="sidebar-icon">💬</span> Community</a>
+</aside>
+
+<div class="main-content">
+<header>
+<h1>PROMINENT RUNS</h1>
+</header>
+
+<main>
+<h2 class="section-title">Notable Achievements</h2>
+<p class="muted">Showcasing impressive Geometry Dash runs from the Maldives community.</p>
+
+<div class="panel">
+<h3>Prominent Runs</h3>
+<p class="muted">No runs have been added yet.</p>
+<p class="muted">Check back when new achievements are submitted!</p>
+</div>
+
+</main>
+<footer>Maldives Geometry Dash Demonlist</footer>
+</div>
+
+<script>
+function toggleSidebar(){
+ document.getElementById("sidebar").classList.toggle("open");
+ document.getElementById("sidebarOverlay").classList.toggle("show");
+}
+const currentPage=location.pathname.split("/").pop()||"index.html";
+document.querySelectorAll(".sidebar a").forEach(a=>{
+ if(a.dataset.page===currentPage)a.classList.add("active");
+});
+</script>
+
+</body>
+</html>
