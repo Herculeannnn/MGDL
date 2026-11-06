@@ -90,21 +90,46 @@ button.remove{background:#444}
 .community{padding:18px}
 .community a{color:#ff5265;text-decoration:none;font-weight:bold}
 .empty{text-align:center;color:#999;padding:25px}
+
 footer{text-align:center;color:#888;padding:30px 15px;font-size:13px}
+
+/* TOP-RIGHT SIDEBAR BUTTON */
 .menu-toggle{
- display:none;position:fixed;top:13px;left:13px;z-index:200;
- width:43px;height:43px;font-size:21px;padding:0;
+ display:block;
+ position:fixed;
+ top:15px;
+ right:15px;
+ left:auto;
+ z-index:200;
+ width:45px;
+ height:45px;
+ font-size:23px;
+ padding:0;
 }
+
+/* SIDEBAR OVERLAY */
 .sidebar-overlay{display:none}
+
 @media(max-width:700px){
  .sidebar{transform:translateX(-100%)}
  .sidebar.open{transform:translateX(0)}
  .main-content{margin-left:0}
- .menu-toggle{display:block}
- .sidebar-overlay.show{
-  display:block;position:fixed;inset:0;
-  background:#0009;z-index:90;
+
+ .menu-toggle{
+  display:block;
+  top:15px;
+  right:15px;
+  left:auto;
  }
+
+ .sidebar-overlay.show{
+  display:block;
+  position:fixed;
+  inset:0;
+  background:#0009;
+  z-index:90;
+ }
+
  header{padding-top:65px}
  .stats{gap:7px}
  .stat{padding:13px 5px}
