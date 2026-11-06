@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MGDL - Unrated</title>
+<link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<header>
+<h1>MALDIVES DEMONLIST</h1>
+<nav>
+<a href="index.html">Home</a>
+<a href="demonlist.html">Demonlist</a>
+<a class="active" href="unrated.html">Unrated</a>
+<a href="players.html">Players</a>
+<a href="community.html">Community</a>
+</nav>
+</header>
+<main>
+<h2 class="section-title">Unrated List</h2>
+<p class="muted">Levels that have not received an official rating.</p>
+
+<div class="panel">
+<h3>Add an unrated level</h3>
+<input class="field" id="unratedName" placeholder="Level name">
+<div class="form-grid">
+<input class="field" id="unratedCreator" placeholder="Creator">
+<input class="field" id="unratedID" placeholder="Geometry Dash level ID">
+</div>
+<input class="field" id="unratedVideo" placeholder="YouTube link or video ID">
+<button onclick="addUnrated()">Add level</button>
+</div>
+
+<input class="search" id="unratedSearch" placeholder="Search unrated levels...">
+<div class="grid" id="unratedGrid"></div>
+</main>
+<footer>Maldives Demonlist — Community project.</footer>
+</body>
+</html>
