@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MGDL - Players</title>
+<link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
+</head>
+<body>
+<header>
+<h1>MALDIVES DEMONLIST</h1>
+<nav>
+<a href="index.html">Home</a>
+<a href="demonlist.html">Demonlist</a>
+<a href="unrated.html">Unrated</a>
+<a class="active" href="players.html">Players</a>
+<a href="community.html">Community</a>
+</nav>
+</header>
+<main>
+<h2 class="section-title">Player Leaderboard</h2>
+<div class="panel">
+<div class="form-grid">
+<input class="field" id="newPlayer" placeholder="Enter player username">
+<button onclick="addPlayer()">Add player</button>
+</div>
+</div>
+<input class="search" id="playerSearch" placeholder="Search players...">
+<div class="players" id="playerList"></div>
+</main>
+<footer>Maldives Demonlist — Community project.</footer>
+</body>
+</html>
