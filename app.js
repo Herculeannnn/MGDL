@@ -1,42 +1,42 @@
 
 const DEMONS=[
 {rank:1,name:"Firework",video:"QBe5x2o9v2w"},
-{rank:2,name:"Unknown",video:"a1sQxQqU6EM"},
-{rank:3,name:"Kenos",video:"Bs1kVySdUtI"},
-{rank:4,name:"Zodiac",video:"91AcKHJC5PA"},
-{rank:5,name:"Bloodlust",video:"5SzKetF2btw"},
-
-{rank:6,name:"Shardscapes",video:"2njKGrzPmVY"},
-{rank:7,name:"Arctic Lights",video:"NDqUHxZjRUw"},
-{rank:8,name:"Wasureta",video:"LDdnsp53PJs"},
-{rank:9,name:"Cataclysm",video:"J90L73YOR3k"},
-{rank:10,name:"Sweater Weather",video:"6YzbM1egN1w"},
-{rank:11,name:"MikuMikuMikuMiku",video:"VQOJ_SZ0Nto"},
-{rank:12,name:"Rauchkammer",video:"-ge89eZ9_5M"},
-
-{rank:13,name:"Yatagarasu",video:"vKXBWa2o3Dw"},
-{rank:14,name:"Bloodbath",video:"A6xe4tKdx_c"},
-{rank:15,name:"Acu",video:"qTE6hE1a_vU"},
-{rank:16,name:"B",video:"ohKPqGxotao"},
-{rank:17,name:"Demon Park",video:"JgNcaLkn7bU"},
-
-{rank:18,name:"Crazy III",video:"1ynspvn8KSs"},
-{rank:19,name:"Supersonic",video:"Wqtn1vsU-HY"},
-{rank:20,name:"Death Note",video:"asQrt9B3aMo"},
-{rank:21,name:"Crazy II",video:"eGPNEaZV6cc"},
-{rank:22,name:"Crazy",video:"g_MP6BENHEs"},
-{rank:23,name:"Nine Circles",video:"dOdPoU1ncOc"},
-{rank:24,name:"Troll Madness",video:"zK3c_RDr-88"},
-{rank:25,name:"Permafrost Mountain",video:"-jlOsjCoTJM"}
+{rank:2,name:"Shardscapes",video:"2njKGrzPmVY"},
+{rank:3,name:"Bloodlust",video:"5SzKetF2btw"},
+{rank:4,name:"Kenos",video:"Bs1kVySdUtI"},
+{rank:5,name:"Zodiac",video:"91AcKHJC5PA"},
+{rank:6,name:"Arctic Lights",video:"NDqUHxZjRUw"},
+{rank:7,name:"Wasureta",video:"LDdnsp53PJs"},
+{rank:8,name:"Yatagarasu",video:"vKXBWa2o3Dw"},
+{rank:9,name:"Bloodbath",video:"A6xe4tKdx_c"},
+{rank:10,name:"Unknown",video:"a1sQxQqU6EM"},
+{rank:11,name:"Cataclysm",video:"J90L73YOR3k"},
+{rank:12,name:"Sweater Weather",video:"6YzbM1egN1w"},
+{rank:13,name:"Acu",video:"qTE6hE1a_vU"},
+{rank:14,name:"Rauchkammer",video:"-ge89eZ9_5M"},
+{rank:15,name:"MikuMikuMikuMiku",video:"VQOJ_SZ0Nto"},
+{rank:16,name:"Supersonic",video:"Wqtn1vsU-HY"},
+{rank:17,name:"Crazy III",video:"1ynspvn8KSs"},
+{rank:18,name:"Death Note",video:"asQrt9B3aMo"},
+{rank:19,name:"Crazy II",video:"eGPNEaZV6cc"},
+{rank:20,name:"Crazy",video:"g_MP6BENHEs"},
+{rank:21,name:"Nine Circles",video:"dOdPoU1ncOc"},
+{rank:22,name:"Troll Madness",video:"zK3c_RDr-88"},
+{rank:23,name:"B",video:"ohKPqGxotao"},
+{rank:24,name:"Permafrost Mountain",video:"-jlOsjCoTJM"},
+{rank:25,name:"Demon Park",video:"JgNcaLkn7bU"}
 ];
-
 
 const PLAYER_KEY="maldivesDemonProgressV1";
 const UNRATED_KEY="mgdlUnratedLevelsV1";
 
 function readStore(key,fallback){
- try{return JSON.parse(localStorage.getItem(key))||fallback}
- catch(e){return fallback}
+ try{
+  const data=JSON.parse(localStorage.getItem(key));
+  return data||fallback;
+ }catch(e){
+  return fallback;
+ }
 }
 
 let players=readStore(PLAYER_KEY,[
@@ -56,27 +56,38 @@ function saveUnrated(){
 
 function esc(s){
  return String(s).replace(/[&<>"']/g,c=>({
- "&":"&amp;","<":"&lt;",">":"&gt;",
- '"':"&quot;","'":"&#39;"
+  "&":"&amp;",
+  "<":"&lt;",
+  ">":"&gt;",
+  '"':"&quot;",
+  "'":"&#39;"
  }[c]));
 }
 
 function getYouTubeID(value){
  value=value.trim();
+
  if(/^[\w-]{11}$/.test(value))return value;
+
  try{
   const u=new URL(value);
-  if(u.hostname==="youtu.be")return u.pathname.slice(1).split("/")[0];
+
+  if(u.hostname==="youtu.be"){
+   return u.pathname.slice(1).split("/")[0];
+  }
+
   if(u.hostname.endsWith("youtube.com")){
    if(u.pathname==="/watch")return u.searchParams.get("v");
+
    const p=u.pathname.split("/");
    if(["embed","shorts","live"].includes(p[1]))return p[2];
   }
  }catch(e){}
+
  return "";
 }
 
-/* VICTORS POPUP STYLING */
+/* VICTORS POPUP STYLES */
 function injectVictorsStyles(){
  if(document.getElementById("victorsStyles"))return;
 
@@ -95,7 +106,9 @@ function injectVictorsStyles(){
   padding:15px;
  }
 
- .victors-modal.show{display:flex}
+ .victors-modal.show{
+  display:flex;
+ }
 
  .victors-box{
   position:relative;
@@ -125,6 +138,10 @@ function injectVictorsStyles(){
   font-size:23px;
   padding:0;
   background:#444;
+  color:white;
+  border:0;
+  border-radius:6px;
+  cursor:pointer;
  }
 
  .victor-entry{
@@ -147,6 +164,7 @@ function injectVictorsStyles(){
   background:#555;
   border:1px solid #666;
   color:white;
+  cursor:pointer;
  }
 
  .victors-trigger:hover{
@@ -157,7 +175,33 @@ function injectVictorsStyles(){
  document.head.appendChild(style);
 }
 
-/* OPEN VICTORS */
+/* CREATE VICTORS POPUP */
+function createVictorsModal(){
+ if(document.getElementById("victorsModal"))return;
+
+ const modal=document.createElement("div");
+ modal.id="victorsModal";
+ modal.className="victors-modal";
+
+ modal.innerHTML=`
+  <div class="victors-box" role="dialog" aria-modal="true"
+  aria-labelledby="victorsTitle">
+   <button class="victors-close" type="button"
+   onclick="closeVictors()" aria-label="Close">×</button>
+
+   <h2 id="victorsTitle"></h2>
+   <p id="victorsCount"></p>
+   <div id="victorsList"></div>
+  </div>
+ `;
+
+ modal.addEventListener("click",e=>{
+  if(e.target===modal)closeVictors();
+ });
+
+ document.body.appendChild(modal);
+}
+
 function openVictors(demon){
  const modal=document.getElementById("victorsModal");
  if(!modal)return;
@@ -264,7 +308,10 @@ function renderUnrated(filter=""){
  grid.innerHTML="";
 
  const results=unrated.map((v,i)=>({...v,index:i}))
- .filter(v=>[v.name,v.creator,v.id].join(" ").toLowerCase().includes(filter.toLowerCase()));
+ .filter(v=>
+  [v.name,v.creator,v.id].join(" ")
+  .toLowerCase().includes(filter.toLowerCase())
+ );
 
  if(!results.length){
   grid.innerHTML='<p class="empty">No unrated levels found.</p>';
@@ -276,17 +323,28 @@ function renderUnrated(filter=""){
   card.className="unrated-card";
 
   card.innerHTML=`
-   <img src="https://img.youtube.com/vi/${encodeURIComponent(v.video)}/hqdefault.jpg" alt="Level showcase">
+   <img src="https://img.youtube.com/vi/${encodeURIComponent(v.video)}/hqdefault.jpg"
+   alt="Level showcase">
+
    <div class="info">
     <span class="unrated-label">UNRATED</span>
     <h3>${esc(v.name)}</h3>
     <p>Creator: ${esc(v.creator)}</p>
     <p>Level ID: ${esc(v.id)}</p>
+
     <div class="actions">
-     <a class="watch" target="_blank" href="https://youtube.com/watch?v=${encodeURIComponent(v.video)}">WATCH</a>
-     <button class="remove" onclick="removeUnrated(${v.index})">Remove</button>
+     <a class="watch" target="_blank"
+     href="https://youtube.com/watch?v=${encodeURIComponent(v.video)}">
+      WATCH
+     </a>
+
+     <button class="remove"
+     onclick="removeUnrated(${v.index})">
+      Remove
+     </button>
     </div>
-   </div>`;
+   </div>
+  `;
 
   grid.appendChild(card);
  });
@@ -296,7 +354,9 @@ function addUnrated(){
  const name=document.getElementById("unratedName").value.trim();
  const creator=document.getElementById("unratedCreator").value.trim();
  const id=document.getElementById("unratedID").value.trim();
- const video=getYouTubeID(document.getElementById("unratedVideo").value);
+ const video=getYouTubeID(
+  document.getElementById("unratedVideo").value
+ );
 
  if(!name||!creator||!id||!video){
   alert("Fill in all fields and enter a valid YouTube link or ID.");
@@ -311,11 +371,14 @@ function addUnrated(){
  unrated.push({name,creator,id,video});
  saveUnrated();
 
- ["unratedName","unratedCreator","unratedID","unratedVideo"].forEach(id=>{
+ ["unratedName","unratedCreator","unratedID","unratedVideo"]
+ .forEach(id=>{
   document.getElementById(id).value="";
  });
 
- renderUnrated(document.getElementById("unratedSearch").value);
+ renderUnrated(
+  document.getElementById("unratedSearch")?.value||""
+ );
 }
 
 function removeUnrated(index){
@@ -323,12 +386,20 @@ function removeUnrated(index){
 
  unrated.splice(index,1);
  saveUnrated();
- renderUnrated(document.getElementById("unratedSearch")?.value||"");
+
+ renderUnrated(
+  document.getElementById("unratedSearch")?.value||""
+ );
 }
 
 /* PLAYER POINTS */
 function getPoints(player){
- return player.completed.reduce((total,rank)=>total+151-rank,0);
+ const completed=Array.isArray(player.completed)
+  ?player.completed:[];
+
+ return completed.reduce(
+  (total,rank)=>total+151-rank,0
+ );
 }
 
 /* PLAYER LEADERBOARD */
@@ -338,10 +409,16 @@ function renderPlayers(filter=""){
 
  list.innerHTML="";
 
- [...players].sort((a,b)=>getPoints(b)-getPoints(a))
- .filter(p=>p.name.toLowerCase().includes(filter.toLowerCase()))
+ [...players]
+ .sort((a,b)=>getPoints(b)-getPoints(a))
+ .filter(p=>
+  p.name.toLowerCase().includes(filter.toLowerCase())
+ )
  .forEach(player=>{
   const i=players.indexOf(player);
+  const completed=Array.isArray(player.completed)
+   ?player.completed:[];
+
   const card=document.createElement("article");
   card.className="player";
 
@@ -352,20 +429,27 @@ function renderPlayers(filter=""){
    </div>
 
    <div class="player-actions">
-    <button onclick="toggleCompletions(${i})">Edit completions</button>
-    <button class="remove" onclick="removePlayer(${i})">Remove</button>
+    <button onclick="toggleCompletions(${i})">
+     Edit completions
+    </button>
+
+    <button class="remove" onclick="removePlayer(${i})">
+     Remove
+    </button>
    </div>
 
    <div class="completions" id="completions-${i}">
     ${DEMONS.map(d=>`
      <label class="completion">
       <input type="checkbox"
-      ${player.completed.includes(d.rank)?"checked":""}
+      ${completed.includes(d.rank)?"checked":""}
       onchange="toggleDemon(${i},${d.rank},this.checked)">
+
       #${d.rank} — ${esc(d.name)}
      </label>
     `).join("")}
-   </div>`;
+   </div>
+  `;
 
   list.appendChild(card);
  });
@@ -376,20 +460,26 @@ function renderPlayers(filter=""){
 
 function addPlayer(){
  const input=document.getElementById("newPlayer");
- const name=input.value.trim();
+ if(!input)return;
 
+ const name=input.value.trim();
  if(!name)return;
 
- if(players.some(p=>p.name.toLowerCase()===name.toLowerCase())){
+ if(players.some(p=>
+  p.name.toLowerCase()===name.toLowerCase()
+ )){
   alert("Player already exists!");
   return;
  }
 
  players.push({name,completed:[]});
  input.value="";
+
  savePlayers();
 
- renderPlayers(document.getElementById("playerSearch")?.value||"");
+ renderPlayers(
+  document.getElementById("playerSearch")?.value||""
+ );
 }
 
 function removePlayer(i){
@@ -398,46 +488,39 @@ function removePlayer(i){
  players.splice(i,1);
  savePlayers();
 
- renderPlayers(document.getElementById("playerSearch")?.value||"");
+ renderPlayers(
+  document.getElementById("playerSearch")?.value||""
+ );
 }
 
 function toggleCompletions(i){
- document.getElementById("completions-"+i).classList.toggle("show");
+ const element=document.getElementById("completions-"+i);
+ if(element)element.classList.toggle("show");
 }
 
 function toggleDemon(i,rank,checked){
- const a=players[i].completed;
+ const completed=players[i].completed;
 
- if(checked&&!a.includes(rank))a.push(rank);
- if(!checked)players[i].completed=a.filter(r=>r!==rank);
+ if(checked&&!completed.includes(rank)){
+  completed.push(rank);
+ }
+
+ if(!checked){
+  players[i].completed=completed.filter(r=>r!==rank);
+ }
 
  savePlayers();
- renderPlayers(document.getElementById("playerSearch")?.value||"");
+
+ renderPlayers(
+  document.getElementById("playerSearch")?.value||""
+ );
 }
 
 /* INITIALIZE */
 document.addEventListener("DOMContentLoaded",()=>{
 
  injectVictorsStyles();
-
- const modal=document.createElement("div");
- modal.id="victorsModal";
- modal.className="victors-modal";
-
- modal.innerHTML=`
-  <div class="victors-box">
-   <button class="victors-close" onclick="closeVictors()">×</button>
-   <h2 id="victorsTitle"></h2>
-   <p class="muted" id="victorsCount"></p>
-   <div id="victorsList"></div>
-  </div>
- `;
-
- modal.addEventListener("click",e=>{
-  if(e.target===modal)closeVictors();
- });
-
- document.body.appendChild(modal);
+ createVictorsModal();
 
  document.addEventListener("keydown",e=>{
   if(e.key==="Escape")closeVictors();
@@ -448,7 +531,9 @@ document.addEventListener("DOMContentLoaded",()=>{
  renderPlayers();
 
  const levelCount=document.getElementById("levelCount");
- if(levelCount)levelCount.textContent=DEMONS.length;
+ if(levelCount){
+  levelCount.textContent=DEMONS.length;
+ }
 
  const searches=[
   ["demonSearch",renderDemons],
@@ -458,6 +543,11 @@ document.addEventListener("DOMContentLoaded",()=>{
 
  searches.forEach(([id,fn])=>{
   const input=document.getElementById(id);
-  if(input)input.addEventListener("input",()=>fn(input.value));
+
+  if(input){
+   input.addEventListener("input",()=>{
+    fn(input.value);
+   });
+  }
  });
 });
