@@ -1,15 +1,15 @@
 
 const DEMONS=[
 {rank:1,name:"Firework",video:"QBe5x2o9v2w"},
-{rank:2,name:"Shardscapes",video:"2njKGrzPmVY"},
-{rank:3,name:"Bloodlust",video:"5SzKetF2btw"},
-{rank:4,name:"Kenos",video:"Bs1kVySdUtI"},
-{rank:5,name:"Zodiac",video:"91AcKHJC5PA"},
-{rank:6,name:"Arctic Lights",video:"NDqUHxZjRUw"},
-{rank:7,name:"Wasureta",video:"LDdnsp53PJs"},
-{rank:8,name:"Yatagarasu",video:"vKXBWa2o3Dw"},
-{rank:9,name:"Bloodbath",video:"A6xe4tKdx_c"},
-{rank:10,name:"Unknown",video:"a1sQxQqU6EM"},
+{rank:2,name:"Unknown",video:"a1sQxQqU6EM"},
+{rank:3,name:"Kenos",video:"Bs1kVySdUtI"},
+{rank:4,name:"Zodiac",video:"91AcKHJC5PA"},
+{rank:5,name:"Bloodlust",video:"5SzKetF2btw"},
+{rank:6,name:"Shardscapes",video:"2njKGrzPmVY"},
+{rank:7,name:"Arctic Lights",video:"NDqUHxZjRUw"},
+{rank:8,name:"Wasureta",video:"LDdnsp53PJs"},
+{rank:9,name:"Yatagarasu",video:"vKXBWa2o3Dw"},
+{rank:10,name:"Bloodbath",video:"A6xe4tKdx_c"},
 {rank:11,name:"Cataclysm",video:"J90L73YOR3k"},
 {rank:12,name:"Sweater Weather",video:"6YzbM1egN1w"},
 {rank:13,name:"Acu",video:"qTE6hE1a_vU"},
@@ -29,11 +29,12 @@ const DEMONS=[
 
 const PLAYER_KEY="maldivesDemonProgressV1";
 const UNRATED_KEY="mgdlUnratedLevelsV1";
+const ORDER_VERSION="mgdlOrderV2";
 
 function readStore(key,fallback){
  try{
   const data=JSON.parse(localStorage.getItem(key));
-  return data||fallback;
+  return data??fallback;
  }catch(e){
   return fallback;
  }
@@ -45,6 +46,34 @@ let players=readStore(PLAYER_KEY,[
 ]);
 
 let unrated=readStore(UNRATED_KEY,[]);
+
+/* MIGRATE COMPLETIONS USING THE OLD LEVEL ORDER */
+function migrateCompletions(){
+ if(localStorage.getItem(ORDER_VERSION)==="done")return;
+
+ const oldOrder=[
+  "Firework","Unknown","Kenos","Zodiac","Bloodlust",
+  "Yatagarasu","Bloodbath","Acu","Crazy III","Supersonic",
+  "Death Note","Crazy II","Crazy","Nine Circles",
+  "Troll Madness","Permafrost Mountain"
+ ];
+
+ players.forEach(player=>{
+  if(!Array.isArray(player.completed))player.completed=[];
+
+  player.completed=player.completed.map(rank=>{
+   const oldName=oldOrder[rank-1];
+
+   if(!oldName)return null;
+
+   const newDemon=DEMONS.find(d=>d.name===oldName);
+   return newDemon?newDemon.rank:null;
+  }).filter(rank=>rank!==null);
+ });
+
+ savePlayers();
+ localStorage.setItem(ORDER_VERSION,"done");
+}
 
 function savePlayers(){
  localStorage.setItem(PLAYER_KEY,JSON.stringify(players));
@@ -105,11 +134,7 @@ function injectVictorsStyles(){
   justify-content:center;
   padding:15px;
  }
-
- .victors-modal.show{
-  display:flex;
- }
-
+ .victors-modal.show{display:flex}
  .victors-box{
   position:relative;
   width:100%;
@@ -123,12 +148,7 @@ function injectVictorsStyles(){
   color:#eee;
   box-shadow:0 10px 40px #0009;
  }
-
- .victors-box h2{
-  color:#eee;
-  margin:0 35px 8px 0;
- }
-
+ .victors-box h2{color:#eee;margin:0 35px 8px 0}
  .victors-close{
   position:absolute;
   top:12px;
@@ -143,7 +163,6 @@ function injectVictorsStyles(){
   border-radius:6px;
   cursor:pointer;
  }
-
  .victor-entry{
   display:flex;
   justify-content:space-between;
@@ -154,22 +173,14 @@ function injectVictorsStyles(){
   border:1px solid #484848;
   border-radius:8px;
  }
-
- .victor-percent{
-  color:#ccc;
-  font-weight:bold;
- }
-
+ .victor-percent{color:#ccc;font-weight:bold}
  .victors-trigger{
   background:#555;
   border:1px solid #666;
   color:white;
   cursor:pointer;
  }
-
- .victors-trigger:hover{
-  background:#777;
- }
+ .victors-trigger:hover{background:#777}
  `;
 
  document.head.appendChild(style);
@@ -188,7 +199,6 @@ function createVictorsModal(){
   aria-labelledby="victorsTitle">
    <button class="victors-close" type="button"
    onclick="closeVictors()" aria-label="Close">×</button>
-
    <h2 id="victorsTitle"></h2>
    <p id="victorsCount"></p>
    <div id="victorsList"></div>
@@ -262,19 +272,13 @@ function renderDemons(filter=""){
   card.innerHTML=`
    <img src="https://img.youtube.com/vi/${d.video}/hqdefault.jpg"
    alt="${esc(d.name)}">
-
    <div class="info">
     <div class="top">
      <span class="rank">#${d.rank}</span>
      <h3>${esc(d.name)}</h3>
     </div>
-
     <p>Difficulty: Extreme Demon</p>
-
-    <button class="victors-trigger" type="button">
-     VICTORS
-    </button>
-
+    <button class="victors-trigger" type="button">VICTORS</button>
     <a class="watch" target="_blank"
     rel="noopener noreferrer"
     href="https://youtube.com/watch?v=${encodeURIComponent(d.video)}">
@@ -283,9 +287,7 @@ function renderDemons(filter=""){
    </div>
   `;
 
-  card.addEventListener("click",()=>{
-   openVictors(d);
-  });
+  card.addEventListener("click",()=>openVictors(d));
 
   card.querySelector(".victors-trigger").addEventListener("click",e=>{
    e.stopPropagation();
@@ -325,21 +327,18 @@ function renderUnrated(filter=""){
   card.innerHTML=`
    <img src="https://img.youtube.com/vi/${encodeURIComponent(v.video)}/hqdefault.jpg"
    alt="Level showcase">
-
    <div class="info">
     <span class="unrated-label">UNRATED</span>
     <h3>${esc(v.name)}</h3>
     <p>Creator: ${esc(v.creator)}</p>
     <p>Level ID: ${esc(v.id)}</p>
-
     <div class="actions">
      <a class="watch" target="_blank"
+     rel="noopener noreferrer"
      href="https://youtube.com/watch?v=${encodeURIComponent(v.video)}">
       WATCH
      </a>
-
-     <button class="remove"
-     onclick="removeUnrated(${v.index})">
+     <button class="remove" onclick="removeUnrated(${v.index})">
       Remove
      </button>
     </div>
@@ -427,24 +426,20 @@ function renderPlayers(filter=""){
     <b>${esc(player.name)}</b>
     <span class="points">${getPoints(player)} points</span>
    </div>
-
    <div class="player-actions">
     <button onclick="toggleCompletions(${i})">
      Edit completions
     </button>
-
     <button class="remove" onclick="removePlayer(${i})">
      Remove
     </button>
    </div>
-
    <div class="completions" id="completions-${i}">
     ${DEMONS.map(d=>`
      <label class="completion">
       <input type="checkbox"
       ${completed.includes(d.rank)?"checked":""}
       onchange="toggleDemon(${i},${d.rank},this.checked)">
-
       #${d.rank} — ${esc(d.name)}
      </label>
     `).join("")}
@@ -499,6 +494,12 @@ function toggleCompletions(i){
 }
 
 function toggleDemon(i,rank,checked){
+ if(!players[i])return;
+
+ if(!Array.isArray(players[i].completed)){
+  players[i].completed=[];
+ }
+
  const completed=players[i].completed;
 
  if(checked&&!completed.includes(rank)){
@@ -518,6 +519,8 @@ function toggleDemon(i,rank,checked){
 
 /* INITIALIZE */
 document.addEventListener("DOMContentLoaded",()=>{
+
+ migrateCompletions();
 
  injectVictorsStyles();
  createVictorsModal();
