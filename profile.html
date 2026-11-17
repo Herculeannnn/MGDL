@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MGDL - Player Profile</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="profiles.css">
+<script src="profiles.js" defer></script>
+</head>
+<body>
+
+<button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+<aside class="sidebar" id="sidebar">
+ <div class="brand">MGDL</div>
+ <div class="sidebar-label">MAIN MENU</div>
+ <a href="index.html" data-page="index.html">⌂ Home</a>
+ <a href="demonlist.html" data-page="demonlist.html">🏆 Demonlist</a>
+ <a href="unrated.html" data-page="unrated.html">📋 Unrated</a>
+ <a href="players.html" data-page="players.html">👥 Players</a>
+ <a href="prominent-runs.html" data-page="prominent-runs.html">⭐ Prominent Runs</a>
+ <a href="community.html" data-page="community.html">💬 Community</a>
+</aside>
+
+<div class="main-content">
+<header>
+ <h1>MGDL PLAYER PROFILE</h1>
+</header>
+
+<main>
+ <a class="back-link" href="players.html">← Back to players</a>
+ <div id="profileView">
+  <p class="empty">Loading profile...</p>
+ </div>
+</main>
+
+<footer>MGDL — Community project.</footer>
+</div>
+
+<script>
+function toggleSidebar(){
+ document.getElementById("sidebar").classList.toggle("open");
+ document.getElementById("sidebarOverlay").classList.toggle("show");
+}
+const currentPage=location.pathname.split("/").pop()||"index.html";
+document.querySelectorAll(".sidebar a").forEach(a=>{
+ if(a.dataset.page===currentPage)a.classList.add("active");
+});
+</script>
+</body>
+</html>
