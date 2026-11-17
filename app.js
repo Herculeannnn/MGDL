@@ -5,18 +5,31 @@ const DEMONS=[
 {rank:3,name:"Kenos",video:"Bs1kVySdUtI"},
 {rank:4,name:"Zodiac",video:"91AcKHJC5PA"},
 {rank:5,name:"Bloodlust",video:"5SzKetF2btw"},
-{rank:6,name:"Yatagarasu",video:"vKXBWa2o3Dw"},
-{rank:7,name:"Bloodbath",video:"A6xe4tKdx_c"},
-{rank:8,name:"Acu",video:"qTE6hE1a_vU"},
-{rank:9,name:"Crazy III",video:"1ynspvn8KSs"},
-{rank:10,name:"Supersonic",video:"3yblLSc0HFqV-ntn"},
-{rank:11,name:"Death Note",video:"asQrt9B3aMo"},
-{rank:12,name:"Crazy II",video:"eGPNEaZV6cc"},
-{rank:13,name:"Crazy",video:"g_MP6BENHEs"},
-{rank:14,name:"Nine Circles",video:"dOdPoU1ncOc"},
-{rank:15,name:"Troll Madness",video:"zK3c_RDr-88"},
-{rank:16,name:"Permafrost Mountain",video:"-jlOsjCoTJM"}
+
+{rank:6,name:"Shardscapes",video:"2njKGrzPmVY"},
+{rank:7,name:"Arctic Lights",video:"NDqUHxZjRUw"},
+{rank:8,name:"Wasureta",video:"LDdnsp53PJs"},
+{rank:9,name:"Cataclysm",video:"J90L73YOR3k"},
+{rank:10,name:"Sweater Weather",video:"6YzbM1egN1w"},
+{rank:11,name:"MikuMikuMikuMiku",video:"VQOJ_SZ0Nto"},
+{rank:12,name:"Rauchkammer",video:"-ge89eZ9_5M"},
+
+{rank:13,name:"Yatagarasu",video:"vKXBWa2o3Dw"},
+{rank:14,name:"Bloodbath",video:"A6xe4tKdx_c"},
+{rank:15,name:"Acu",video:"qTE6hE1a_vU"},
+{rank:16,name:"B",video:"ohKPqGxotao"},
+{rank:17,name:"Demon Park",video:"JgNcaLkn7bU"},
+
+{rank:18,name:"Crazy III",video:"1ynspvn8KSs"},
+{rank:19,name:"Supersonic",video:"Wqtn1vsU-HY"},
+{rank:20,name:"Death Note",video:"asQrt9B3aMo"},
+{rank:21,name:"Crazy II",video:"eGPNEaZV6cc"},
+{rank:22,name:"Crazy",video:"g_MP6BENHEs"},
+{rank:23,name:"Nine Circles",video:"dOdPoU1ncOc"},
+{rank:24,name:"Troll Madness",video:"zK3c_RDr-88"},
+{rank:25,name:"Permafrost Mountain",video:"-jlOsjCoTJM"}
 ];
+
 
 const PLAYER_KEY="maldivesDemonProgressV1";
 const UNRATED_KEY="mgdlUnratedLevelsV1";
