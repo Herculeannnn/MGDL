@@ -1,15 +1,27 @@
 
 *{box-sizing:border-box}
 
+:root{
+ --bg:#111;
+ --sidebar:#191919;
+ --surface:#202020;
+ --surface-hover:#292929;
+ --border:#383838;
+ --text:#eee;
+ --muted:#999;
+ --accent:#e02d3c;
+ --accent-soft:#471b20;
+}
+
 body{
  margin:0;
- color:#eee;
+ color:var(--text);
  font-family:Arial,sans-serif;
- background:#111;
+ background:var(--bg);
  min-height:100vh;
 }
 
-/* GREYSCALE PARTICLES */
+/* PARTICLES */
 .particle{
  background:#aaa;
  box-shadow:0 0 8px #aaa;
@@ -20,70 +32,178 @@ body{
  position:fixed;
  left:0;
  top:0;
- width:245px;
+ width:250px;
  height:100vh;
- background:#1b1b1b;
- border-right:1px solid #444;
- padding:24px 15px;
+ background:var(--sidebar);
+ border-right:1px solid var(--border);
+ padding:24px 17px;
  z-index:100;
+ display:flex;
+ flex-direction:column;
+ overflow-y:auto;
  transform:translateX(-100%);
  transition:transform .25s ease;
 }
 
-.sidebar.open{transform:translateX(0)}
-
-.brand{
- color:#ddd;
- font-size:21px;
- font-weight:900;
- letter-spacing:3px;
- text-align:center;
- margin:10px 0 35px;
+.sidebar.open{
+ transform:translateX(0);
 }
 
+/* BRAND */
+.brand{
+ color:#eee;
+ font-size:27px;
+ font-weight:900;
+ letter-spacing:4px;
+ text-align:center;
+ margin:12px 0 8px;
+ padding-bottom:24px;
+ border-bottom:1px solid #383838;
+}
+
+.brand::after{
+ content:"MALDIVES GEOMETRY DASH";
+ display:block;
+ color:#888;
+ font-size:9px;
+ letter-spacing:2px;
+ margin-top:8px;
+}
+
+/* SECTION LABELS */
 .sidebar-label{
  color:#888;
- font-size:11px;
+ font-size:10px;
+ font-weight:bold;
  letter-spacing:2px;
  padding:0 12px;
- margin-bottom:12px;
+ margin:25px 0 10px;
+}
+
+/* NAVIGATION */
+.sidebar nav{
+ display:flex;
+ flex-direction:column;
+ gap:6px;
 }
 
 .sidebar a{
+ position:relative;
  display:flex;
  align-items:center;
- gap:13px;
- color:#bbb;
+ gap:14px;
+ min-height:47px;
+ color:#aaa;
  text-decoration:none;
- padding:14px 13px;
- margin:5px 0;
- border-radius:8px;
+ padding:12px 14px;
+ margin:0;
+ border:1px solid transparent;
+ border-radius:9px;
+ font-size:14px;
  font-weight:bold;
- transition:.2s;
+ transition:background .2s,color .2s,border-color .2s;
 }
 
 .sidebar a:hover{
- background:#333;
- color:white;
+ background:#292929;
+ color:#fff;
 }
 
 .sidebar a.active{
- background:#454545;
- color:white;
- box-shadow:0 0 12px #0006;
+ background:#351b1e;
+ color:#fff;
+ border-color:#65252c;
+}
+
+.sidebar a.active::before{
+ content:"";
+ position:absolute;
+ left:-1px;
+ top:9px;
+ bottom:9px;
+ width:3px;
+ background:var(--accent);
+ border-radius:0 4px 4px 0;
+ box-shadow:0 0 9px #e02d3c88;
 }
 
 .sidebar-icon{
- font-size:19px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
  width:23px;
+ min-width:23px;
+ font-size:19px;
  text-align:center;
 }
 
+/* COMMUNITY SECTION */
+.sidebar .community{
+ background:#202020;
+ border:1px solid #383838;
+ border-radius:10px;
+ padding:12px;
+ margin:8px 0;
+ transition:border-color .2s,background .2s;
+}
+
+.sidebar .community:hover{
+ background:#282828;
+ border-color:#713039;
+}
+
+.sidebar .community a{
+ display:block;
+ min-height:0;
+ padding:0;
+ margin:0;
+ border:0;
+ background:none;
+ color:#eee;
+ font-size:12px;
+ line-height:1.5;
+}
+
+.sidebar .community a:hover{
+ color:#fff;
+}
+
+.sidebar .community a::before{
+ display:none;
+}
+
+.sidebar .community-icon{
+ font-size:22px;
+ margin-right:8px;
+}
+
+.sidebar .community-name{
+ font-weight:bold;
+ color:#eee;
+}
+
+.sidebar .community-link{
+ color:var(--accent);
+ font-size:11px;
+}
+
+/* SIDEBAR FOOTER */
+.sidebar footer{
+ margin-top:auto;
+ border-top:1px solid #383838;
+ padding:18px 5px 5px;
+ color:#777;
+ font-size:11px;
+ line-height:1.6;
+}
+
+/* MAIN CONTENT */
 .main-content{
  margin-left:0;
  min-height:100vh;
 }
 
+/* MOBILE MENU BUTTON */
 .menu-toggle{
  display:block;
  position:fixed;
@@ -94,9 +214,20 @@ body{
  height:45px;
  font-size:23px;
  padding:0;
+ background:#222;
+ border:1px solid #444;
+ border-radius:9px;
+ color:white;
 }
 
-.sidebar-overlay{display:none}
+.menu-toggle:hover{
+ background:#383838;
+}
+
+/* OVERLAY */
+.sidebar-overlay{
+ display:none;
+}
 
 .sidebar-overlay.show{
  display:block;
@@ -106,6 +237,7 @@ body{
  z-index:90;
 }
 
+/* HEADER */
 header{
  text-align:center;
  padding:65px 15px 10px;
@@ -167,7 +299,7 @@ main{
 }
 
 .section-title{
- border-left:4px solid #aaa;
+ border-left:4px solid var(--accent);
  padding-left:12px;
  margin:25px 0 18px;
 }
@@ -185,7 +317,7 @@ main{
 }
 
 .search:focus,.field:focus{
- border-color:#aaa;
+ border-color:var(--accent);
 }
 
 /* DEMON AND UNRATED GRIDS */
@@ -195,7 +327,9 @@ main{
  gap:15px;
 }
 
-.demon,.unrated-card{overflow:hidden}
+.demon,.unrated-card{
+ overflow:hidden;
+}
 
 .demon img,.unrated-card img{
  width:100%;
@@ -228,22 +362,35 @@ main{
 /* BUTTONS */
 .watch,button{
  display:inline-block;
- background:#555;
+ background:#383838;
  color:white;
  padding:9px 13px;
- border:1px solid #666;
+ border:1px solid #555;
  border-radius:6px;
  text-decoration:none;
  font-size:13px;
  font-weight:bold;
  cursor:pointer;
+ transition:.2s;
 }
 
 button:hover,.watch:hover{
- background:#777;
+ background:#555;
+ border-color:#777;
 }
 
 button.remove{background:#383838}
+
+/* VICTORS BUTTON */
+.victors-trigger{
+ background:#351b1e;
+ border:1px solid #713039;
+ color:#eee;
+}
+
+.victors-trigger:hover{
+ background:#502127;
+}
 
 /* PANELS */
 .panel{
@@ -326,22 +473,54 @@ button.remove{background:#383838}
 }
 
 /* FOOTER */
-footer{
+body>footer{
  text-align:center;
  color:#888;
  padding:30px 15px;
  font-size:13px;
 }
 
-/* RESPONSIVE */
+/* DESKTOP */
 @media(min-width:701px){
- .sidebar.open{transform:translateX(0)}
+
+ .sidebar{
+  transform:translateX(0);
+ }
+
+ .main-content{
+  margin-left:250px;
+ }
+
+ .menu-toggle{
+  display:none;
+ }
+
+ .sidebar-overlay{
+  display:none!important;
+ }
 }
 
+/* MOBILE */
 @media(max-width:700px){
+
+ .sidebar{
+  width:270px;
+  max-width:85vw;
+ }
+
  header{padding-top:65px}
+
  .stats{gap:7px}
+
  .stat{padding:13px 5px}
+
  .stat strong{font-size:21px}
- .form-grid{grid-template-columns:1fr}
+
+ .form-grid{
+  grid-template-columns:1fr;
+ }
+
+ main{
+  padding:12px;
+ }
 }
