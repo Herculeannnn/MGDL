@@ -1,5 +1,7 @@
+/* ================================
+   PLAYER DIRECTORY HERO
+================================ */
 
-/* PROFILE DIRECTORY */
 .profile-hero{
  text-align:center;
  padding:35px 10px;
@@ -15,15 +17,54 @@
 }
 
 .profile-kicker{
- color:#e02d3c;
+ color:#aaa;
  font-size:11px;
  font-weight:bold;
  letter-spacing:3px;
 }
 
+/* ================================
+   LEADERBOARD OVERVIEW
+================================ */
+
+.leaderboard-overview{
+ display:grid;
+ grid-template-columns:repeat(3,minmax(0,1fr));
+ gap:12px;
+ margin:0 0 28px;
+}
+
+.leaderboard-stat{
+ min-width:0;
+ padding:19px;
+ background:linear-gradient(145deg,#222,#191919);
+ border:1px solid #383838;
+ border-radius:12px;
+}
+
+.overview-label{
+ display:block;
+ color:#929292;
+ font-size:10px;
+ font-weight:bold;
+ letter-spacing:1.5px;
+ margin-bottom:10px;
+}
+
+.leaderboard-stat strong{
+ display:block;
+ color:#eee;
+ font-size:clamp(18px,3vw,27px);
+ overflow-wrap:anywhere;
+}
+
+/* ================================
+   REGISTRATION
+================================ */
+
 .register-panel{
  max-width:650px;
- margin:0 auto 35px;
+ margin:0 auto 38px;
 }
 
 .register-panel h2{
@@ -35,69 +76,296 @@
  font-size:13px;
 }
 
-.profile-directory{
+/* ================================
+   LEADERBOARD HEADING
+================================ */
+
+.leaderboard-section{
+ margin-top:30px;
+}
+
+.leaderboard-heading{
+ display:flex;
+ align-items:flex-end;
+ justify-content:space-between;
+ gap:15px;
+ margin-bottom:20px;
+}
+
+.leaderboard-heading .section-title{
+ margin:8px 0 0;
+}
+
+.leaderboard-live{
+ padding:7px 10px;
+ color:#aaa;
+ border:1px solid #444;
+ border-radius:6px;
+ font-size:9px;
+ font-weight:bold;
+ letter-spacing:1px;
+ white-space:nowrap;
+}
+
+/* ================================
+   SEARCH AND FILTERS
+================================ */
+
+.leaderboard-controls{
+ display:flex;
+ gap:10px;
+ margin-bottom:15px;
+}
+
+.leaderboard-search{
+ flex:1;
+ min-width:0;
+}
+
+.leaderboard-sort{
+ width:190px;
+ min-width:0;
+}
+
+/* ================================
+   TABLE
+================================ */
+
+.leaderboard-table-wrap{
+ overflow:hidden;
+ background:#181818;
+ border:1px solid #383838;
+ border-radius:12px;
+}
+
+.leaderboard-table-head,
+.profile-card{
  display:grid;
+ grid-template-columns:75px minmax(130px,1.5fr) minmax(85px,.8fr) minmax(115px,1fr) 85px;
+ align-items:center;
  gap:12px;
 }
 
-.profile-card{
+.leaderboard-table-head{
+ padding:14px 18px;
+ background:#222;
+ border-bottom:1px solid #414141;
+ color:#929292;
+ font-size:10px;
+ font-weight:bold;
+ letter-spacing:1px;
+}
+
+.profile-directory{
  display:flex;
- align-items:center;
- gap:15px;
- padding:16px;
- background:#1c1c1c;
- border:1px solid #414141;
- border-radius:12px;
+ flex-direction:column;
+ gap:0;
+}
+
+/* ================================
+   PLAYER ROWS
+================================ */
+
+.profile-card{
+ position:relative;
+ padding:16px 18px;
  color:#eee;
  text-decoration:none;
- transition:.2s;
+ background:#191919;
+ border-bottom:1px solid #303030;
+ transition:background .18s ease,border-color .18s ease;
+}
+
+.profile-card:last-child{
+ border-bottom:none;
 }
 
 .profile-card:hover{
  background:#252525;
- border-color:#8b3039;
- transform:translateY(-2px);
+}
+
+.player-rank{
+ display:flex;
+ align-items:center;
+ gap:7px;
+ color:#aaa;
+ font-size:15px;
+ font-weight:bold;
+}
+
+.player-rank-number{
+ font-variant-numeric:tabular-nums;
+}
+
+.player-medal{
+ font-size:17px;
+}
+
+.player-identity{
+ display:flex;
+ align-items:center;
+ gap:12px;
+ min-width:0;
 }
 
 .directory-avatar{
- width:55px;
- height:55px;
- min-width:55px;
+ width:43px;
+ height:43px;
+ min-width:43px;
  display:grid;
  place-items:center;
- border-radius:12px;
- background:#303030;
- font-size:28px;
+ background:#292929;
+ border:1px solid #444;
+ border-radius:10px;
+ font-size:23px;
 }
 
 .directory-info{
  min-width:0;
- flex:1;
 }
 
 .directory-info h3{
  margin:0 0 5px;
-}
-
-.directory-info p{
- color:#999;
- font-size:13px;
- margin:0 0 7px;
+ color:#eee;
+ font-size:14px;
  overflow-wrap:anywhere;
 }
 
-.directory-info span{
- color:#e07880;
+.directory-info p{
+ margin:0;
+ color:#888;
+ font-size:11px;
+ overflow:hidden;
+ text-overflow:ellipsis;
+ white-space:nowrap;
+}
+
+.player-points{
+ color:#ddd;
+ font-size:14px;
+ font-weight:bold;
+ font-variant-numeric:tabular-nums;
+}
+
+.player-completions{
+ min-width:0;
+}
+
+.completion-count{
+ display:block;
+ color:#ddd;
  font-size:12px;
  font-weight:bold;
+ margin-bottom:7px;
+}
+
+.completion-track{
+ height:5px;
+ overflow:hidden;
+ background:#333;
+ border-radius:10px;
+}
+
+.completion-fill{
+ height:100%;
+ background:#aaa;
+ border-radius:10px;
 }
 
 .profile-arrow{
- font-size:28px;
- color:#888;
+ display:inline-flex;
+ align-items:center;
+ justify-content:center;
+ justify-self:end;
+ padding:7px 11px;
+ color:#ccc;
+ background:#292929;
+ border:1px solid #444;
+ border-radius:6px;
+ font-size:11px;
+ font-weight:bold;
+ transition:.2s;
 }
 
-/* INDIVIDUAL PROFILE */
+.profile-card:hover .profile-arrow{
+ color:#fff;
+ background:#383838;
+ border-color:#777;
+}
+
+/* ================================
+   TOP THREE
+================================ */
+
+.profile-card.rank-gold{
+ background:linear-gradient(90deg,rgba(171,132,55,.16),#191919 65%);
+ border-left:3px solid #c7a45d;
+}
+
+.profile-card.rank-gold .player-rank,
+.profile-card.rank-gold .player-points{
+ color:#e4c77f;
+}
+
+.profile-card.rank-gold .directory-avatar{
+ border-color:#9e8147;
+}
+
+.profile-card.rank-gold .completion-fill{
+ background:#c7a45d;
+}
+
+.profile-card.rank-silver{
+ background:linear-gradient(90deg,rgba(151,161,174,.14),#191919 65%);
+ border-left:3px solid #aeb8c4;
+}
+
+.profile-card.rank-silver .player-rank,
+.profile-card.rank-silver .player-points{
+ color:#d0d7df;
+}
+
+.profile-card.rank-silver .directory-avatar{
+ border-color:#8793a0;
+}
+
+.profile-card.rank-silver .completion-fill{
+ background:#aeb8c4;
+}
+
+.profile-card.rank-bronze{
+ background:linear-gradient(90deg,rgba(159,105,69,.14),#191919 65%);
+ border-left:3px solid #b98767;
+}
+
+.profile-card.rank-bronze .player-rank,
+.profile-card.rank-bronze .player-points{
+ color:#d3a184;
+}
+
+.profile-card.rank-bronze .directory-avatar{
+ border-color:#956d54;
+}
+
+.profile-card.rank-bronze .completion-fill{
+ background:#b98767;
+}
+
+/* ================================
+   EMPTY STATE
+================================ */
+
+.empty{
+ padding:25px;
+ text-align:center;
+ color:#888;
+ font-size:13px;
+}
+
+/* ================================
+   INDIVIDUAL PROFILE
+================================ */
+
 .back-link{
  display:inline-block;
  color:#ccc;
@@ -106,7 +374,7 @@
 }
 
 .back-link:hover{
- color:#e02d3c;
+ color:#fff;
 }
 
 .full-profile{
@@ -118,7 +386,7 @@
 
 .profile-banner{
  height:150px;
- background:#351b20;
+ background:#292929;
  border-bottom:1px solid #444;
 }
 
@@ -208,7 +476,10 @@
  display:none;
 }
 
-/* COMPLETIONS */
+/* ================================
+   COMPLETIONS
+================================ */
+
 .completed-section{
  margin-top:30px;
 }
@@ -238,7 +509,88 @@
  line-height:1.6;
 }
 
-@media(max-width:500px){
+/* ================================
+   MOBILE
+================================ */
+
+@media(max-width:700px){
+
+ .leaderboard-table-head,
+ .profile-card{
+  grid-template-columns:43px minmax(110px,1fr) 65px 75px;
+  gap:8px;
+ }
+
+ .leaderboard-table-head{
+  font-size:8px;
+  padding:12px 10px;
+ }
+
+ .leaderboard-table-head span:nth-child(5){
+  display:none;
+ }
+
+ .profile-card{
+  padding:13px 10px;
+ }
+
+ .profile-arrow{
+  display:none;
+ }
+
+ .directory-avatar{
+  width:36px;
+  height:36px;
+  min-width:36px;
+  font-size:20px;
+ }
+
+ .directory-info h3{
+  font-size:12px;
+ }
+
+ .directory-info p{
+  font-size:10px;
+ }
+
+ .player-points{
+  font-size:12px;
+ }
+
+ .completion-count{
+  font-size:10px;
+ }
+
+ .leaderboard-controls{
+  flex-direction:column;
+ }
+
+ .leaderboard-sort{
+  width:100%;
+ }
+
+ .leaderboard-overview{
+  gap:7px;
+ }
+
+ .leaderboard-stat{
+  padding:13px 10px;
+ }
+
+ .overview-label{
+  font-size:8px;
+  letter-spacing:.7px;
+ }
+
+ .leaderboard-heading{
+  align-items:flex-start;
+ }
+
+ .leaderboard-live{
+  font-size:8px;
+  padding:6px;
+ }
+
  .profile-main{
   padding:0 15px 18px;
  }
@@ -262,9 +614,21 @@
  .profile-stats span{
   font-size:9px;
  }
+}
 
+@media(max-width:380px){
+
+ .leaderboard-table-head,
  .profile-card{
-  padding:12px;
-  gap:11px;
+  grid-template-columns:32px minmax(85px,1fr) 55px 65px;
+  gap:6px;
+ }
+
+ .directory-avatar{
+  display:none;
+ }
+
+ .player-rank{
+  font-size:12px;
  }
 }
