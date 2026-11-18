@@ -9,8 +9,8 @@
  --border:#383838;
  --text:#eee;
  --muted:#999;
- --accent:#e02d3c;
- --accent-soft:#471b20;
+ --accent:#aaa;
+ --accent-soft:#303030;
 }
 
 body{
@@ -34,15 +34,16 @@ body{
  top:0;
  width:250px;
  height:100vh;
- background:var(--sidebar);
- border-right:1px solid var(--border);
- padding:24px 17px;
+ background:linear-gradient(180deg,#202020 0%,#171717 100%);
+ border-right:1px solid #404040;
+ padding:22px 16px;
  z-index:100;
  display:flex;
  flex-direction:column;
  overflow-y:auto;
  transform:translateX(-100%);
- transition:transform .25s ease;
+ transition:transform .28s ease;
+ box-shadow:8px 0 30px #0005;
 }
 
 .sidebar.open{
@@ -51,23 +52,42 @@ body{
 
 /* BRAND */
 .brand{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ gap:12px;
  color:#eee;
  font-size:27px;
  font-weight:900;
  letter-spacing:4px;
  text-align:center;
- margin:12px 0 8px;
- padding-bottom:24px;
+ margin:8px 0 24px;
+ padding-bottom:23px;
  border-bottom:1px solid #383838;
+}
+
+.brand::before{
+ content:"M";
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ width:39px;
+ height:39px;
+ background:#383838;
+ border:1px solid #555;
+ border-radius:10px;
+ color:#ddd;
+ font-size:22px;
+ letter-spacing:0;
 }
 
 .brand::after{
  content:"MALDIVES GEOMETRY DASH";
- display:block;
+ position:absolute;
+ margin-top:66px;
  color:#888;
  font-size:9px;
  letter-spacing:2px;
- margin-top:8px;
 }
 
 /* SECTION LABELS */
@@ -77,7 +97,7 @@ body{
  font-weight:bold;
  letter-spacing:2px;
  padding:0 12px;
- margin:25px 0 10px;
+ margin:8px 0 12px;
 }
 
 /* NAVIGATION */
@@ -91,11 +111,11 @@ body{
  position:relative;
  display:flex;
  align-items:center;
- gap:14px;
+ gap:13px;
  min-height:47px;
  color:#aaa;
  text-decoration:none;
- padding:12px 14px;
+ padding:11px 13px;
  margin:0;
  border:1px solid transparent;
  border-radius:9px;
@@ -105,14 +125,14 @@ body{
 }
 
 .sidebar a:hover{
- background:#292929;
+ background:#303030;
  color:#fff;
 }
 
 .sidebar a.active{
- background:#351b1e;
+ background:#303030;
  color:#fff;
- border-color:#65252c;
+ border-color:#505050;
 }
 
 .sidebar a.active::before{
@@ -122,11 +142,11 @@ body{
  top:9px;
  bottom:9px;
  width:3px;
- background:var(--accent);
+ background:#ddd;
  border-radius:0 4px 4px 0;
- box-shadow:0 0 9px #e02d3c88;
 }
 
+/* ICONS */
 .sidebar-icon{
  display:flex;
  align-items:center;
@@ -134,7 +154,13 @@ body{
  width:23px;
  min-width:23px;
  font-size:19px;
- text-align:center;
+ color:#999;
+ filter:grayscale(1);
+}
+
+.sidebar a:hover .sidebar-icon,
+.sidebar a.active .sidebar-icon{
+ color:#eee;
 }
 
 /* COMMUNITY SECTION */
@@ -149,7 +175,7 @@ body{
 
 .sidebar .community:hover{
  background:#282828;
- border-color:#713039;
+ border-color:#666;
 }
 
 .sidebar .community a{
@@ -175,6 +201,7 @@ body{
 .sidebar .community-icon{
  font-size:22px;
  margin-right:8px;
+ filter:grayscale(1);
 }
 
 .sidebar .community-name{
@@ -183,7 +210,7 @@ body{
 }
 
 .sidebar .community-link{
- color:var(--accent);
+ color:#aaa;
  font-size:11px;
 }
 
@@ -203,25 +230,30 @@ body{
  min-height:100vh;
 }
 
-/* MOBILE MENU BUTTON */
+/* HAMBURGER BUTTON */
 .menu-toggle{
  display:block;
  position:fixed;
  top:15px;
- right:15px;
+ left:15px;
+ right:auto;
  z-index:200;
  width:45px;
  height:45px;
  font-size:23px;
  padding:0;
  background:#222;
- border:1px solid #444;
- border-radius:9px;
- color:white;
+ border:1px solid #555;
+ border-radius:10px;
+ color:#ddd;
+ cursor:pointer;
+ box-shadow:0 4px 15px #0005;
+ transition:background .2s,border-color .2s;
 }
 
 .menu-toggle:hover{
  background:#383838;
+ border-color:#888;
 }
 
 /* OVERLAY */
@@ -233,7 +265,8 @@ body{
  display:block;
  position:fixed;
  inset:0;
- background:#0009;
+ background:#000a;
+ backdrop-filter:blur(2px);
  z-index:90;
 }
 
@@ -299,7 +332,7 @@ main{
 }
 
 .section-title{
- border-left:4px solid var(--accent);
+ border-left:4px solid #888;
  padding-left:12px;
  margin:25px 0 18px;
 }
@@ -317,7 +350,7 @@ main{
 }
 
 .search:focus,.field:focus{
- border-color:var(--accent);
+ border-color:#aaa;
 }
 
 /* DEMON AND UNRATED GRIDS */
@@ -359,6 +392,11 @@ main{
  font-size:13px;
 }
 
+/* TOP THREE */
+.rank-gold{color:#FFD700!important}
+.rank-silver{color:#C0C0C0!important}
+.rank-bronze{color:#CD7F32!important}
+
 /* BUTTONS */
 .watch,button{
  display:inline-block;
@@ -383,13 +421,13 @@ button.remove{background:#383838}
 
 /* VICTORS BUTTON */
 .victors-trigger{
- background:#351b1e;
- border:1px solid #713039;
+ background:#383838;
+ border:1px solid #555;
  color:#eee;
 }
 
 .victors-trigger:hover{
- background:#502127;
+ background:#505050;
 }
 
 /* PANELS */
@@ -422,6 +460,11 @@ button.remove{background:#383838}
 .points{
  color:#ccc;
  font-weight:bold;
+}
+
+.player-position{
+ font-weight:bold;
+ margin-right:8px;
 }
 
 .player-actions,.actions{
@@ -508,7 +551,7 @@ body>footer{
   max-width:85vw;
  }
 
- header{padding-top:65px}
+ header{padding-top:75px}
 
  .stats{gap:7px}
 
