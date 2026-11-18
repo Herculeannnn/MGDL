@@ -1,12 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>MGDL - Player Profile</title>
+<title>MGDL - Players</title>
+
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="profiles.css">
+
 <script src="profiles.js" defer></script>
 </head>
 <body>
@@ -17,6 +18,7 @@
 <aside class="sidebar" id="sidebar">
  <div class="brand">MGDL</div>
  <div class="sidebar-label">MAIN MENU</div>
+
  <a href="index.html" data-page="index.html">⌂ Home</a>
  <a href="demonlist.html" data-page="demonlist.html">🏆 Demonlist</a>
  <a href="unrated.html" data-page="unrated.html">📋 Unrated</a>
@@ -26,15 +28,101 @@
 </aside>
 
 <div class="main-content">
+
 <header>
- <h1>MGDL PLAYER PROFILE</h1>
+ <h1>MALDIVES DEMONLIST</h1>
 </header>
 
 <main>
- <a class="back-link" href="players.html">← Back to players</a>
- <div id="profileView">
-  <p class="empty">Loading profile...</p>
- </div>
+
+ <section class="profile-hero">
+  <span class="profile-kicker">MGDL COMMUNITY</span>
+  <h2>Player Leaderboard</h2>
+  <p>Explore the players competing across the Maldives Demonlist.</p>
+ </section>
+
+ <section class="leaderboard-overview">
+  <div class="leaderboard-stat">
+   <span class="overview-label">REGISTERED PLAYERS</span>
+   <strong id="totalPlayers">0</strong>
+  </div>
+
+  <div class="leaderboard-stat">
+   <span class="overview-label">TOTAL COMPLETIONS</span>
+   <strong id="totalCompletions">0</strong>
+  </div>
+
+  <div class="leaderboard-stat">
+   <span class="overview-label">TOP PLAYER</span>
+   <strong id="topPlayer">—</strong>
+  </div>
+ </section>
+
+ <section class="register-panel panel">
+  <h2>Create your profile</h2>
+  <p class="muted">Join the MGDL player directory.</p>
+
+  <form id="registerForm">
+   <input
+    class="field"
+    id="registerName"
+    maxlength="24"
+    placeholder="Your username"
+    required
+   >
+
+   <button type="submit">Create profile</button>
+   <p id="registerMessage" class="form-message"></p>
+  </form>
+ </section>
+
+ <section class="leaderboard-section">
+
+  <div class="leaderboard-heading">
+   <div>
+    <span class="profile-kicker">COMPETITIVE RANKINGS</span>
+    <h2 class="section-title">MGDL Players</h2>
+   </div>
+
+   <span class="leaderboard-live">PLAYER RANKINGS</span>
+  </div>
+
+  <div class="leaderboard-controls">
+   <input
+    class="search leaderboard-search"
+    id="profileSearch"
+    placeholder="Search players..."
+    autocomplete="off"
+   >
+
+   <select class="field leaderboard-sort" id="profileSort">
+    <option value="points">Sort by points</option>
+    <option value="completions">Sort by completions</option>
+    <option value="name">Sort by name</option>
+   </select>
+  </div>
+
+  <div class="leaderboard-table-wrap">
+   <div class="leaderboard-table-head">
+    <span>RANK</span>
+    <span>PLAYER</span>
+    <span>POINTS</span>
+    <span>COMPLETIONS</span>
+    <span>PROFILE</span>
+   </div>
+
+   <div id="profileDirectory" class="profile-directory">
+    <p class="empty">Loading players...</p>
+   </div>
+  </div>
+
+  <p class="local-notice">
+   Player progress is read from the MGDL leaderboard stored on this device.
+   Profile information is stored locally and is not independently verified.
+  </p>
+
+ </section>
+
 </main>
 
 <footer>MGDL — Community project.</footer>
@@ -45,10 +133,15 @@ function toggleSidebar(){
  document.getElementById("sidebar").classList.toggle("open");
  document.getElementById("sidebarOverlay").classList.toggle("show");
 }
+
 const currentPage=location.pathname.split("/").pop()||"index.html";
+
 document.querySelectorAll(".sidebar a").forEach(a=>{
- if(a.dataset.page===currentPage)a.classList.add("active");
+ if(a.dataset.page===currentPage){
+  a.classList.add("active");
+ }
 });
 </script>
+
 </body>
 </html>
