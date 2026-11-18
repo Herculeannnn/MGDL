@@ -1,7 +1,7 @@
 
 /* =================================
    MGDL — PREMIUM GRAYSCALE THEME
-   ================================= */
+================================= */
 
 *{
  box-sizing:border-box;
@@ -495,10 +495,96 @@ main{
  line-height:1.5;
 }
 
-/* TOP THREE */
+/* TOP THREE DEMON RANK TEXT */
 .rank-gold{color:#FFD700!important}
 .rank-silver{color:#C0C0C0!important}
 .rank-bronze{color:#CD7F32!important}
+
+/* =================================
+   TOP THREE PLAYER AURAS
+   Glow emitted from BEHIND rows
+================================= */
+
+.profile-card{
+ position:relative;
+ isolation:isolate;
+ overflow:visible;
+}
+
+/* Keep the actual card surface dark */
+.profile-card.rank-gold,
+.profile-card.rank-silver,
+.profile-card.rank-bronze{
+ background:#191919;
+}
+
+/* Shared blurred aura */
+.profile-card.rank-gold::before,
+.profile-card.rank-silver::before,
+.profile-card.rank-bronze::before{
+ content:"";
+ position:absolute;
+ inset:-7px;
+ border-radius:14px;
+ filter:blur(17px);
+ opacity:.55;
+ z-index:-1;
+ pointer-events:none;
+ transition:opacity .3s ease;
+}
+
+/* GOLD */
+.profile-card.rank-gold::before{
+ background:radial-gradient(
+  ellipse,
+  rgba(218,175,75,.8),
+  rgba(218,175,75,.15) 65%,
+  transparent 100%
+ );
+}
+
+/* SILVER */
+.profile-card.rank-silver::before{
+ background:radial-gradient(
+  ellipse,
+  rgba(190,205,220,.8),
+  rgba(190,205,220,.15) 65%,
+  transparent 100%
+ );
+}
+
+/* BRONZE */
+.profile-card.rank-bronze::before{
+ background:radial-gradient(
+  ellipse,
+  rgba(190,125,85,.8),
+  rgba(190,125,85,.15) 65%,
+  transparent 100%
+ );
+}
+
+/* Stronger glow on hover */
+.profile-card.rank-gold:hover::before,
+.profile-card.rank-silver:hover::before,
+.profile-card.rank-bronze:hover::before{
+ opacity:.95;
+}
+
+/* Medal text accents */
+.profile-card.rank-gold .player-rank,
+.profile-card.rank-gold .player-points{
+ color:#e4c77f;
+}
+
+.profile-card.rank-silver .player-rank,
+.profile-card.rank-silver .player-points{
+ color:#d0d7df;
+}
+
+.profile-card.rank-bronze .player-rank,
+.profile-card.rank-bronze .player-points{
+ color:#d3a184;
+}
 
 /* BUTTONS */
 button,.watch{
