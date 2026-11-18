@@ -111,7 +111,7 @@ function getYouTubeID(value){
  return "";
 }
 
-/* VICTORS POPUP STYLES */
+/* VICTORS POPUP AND TOP 3 AURA STYLES */
 function injectVictorsStyles(){
  if(document.getElementById("victorsStyles"))return;
 
@@ -119,6 +119,9 @@ function injectVictorsStyles(){
  style.id="victorsStyles";
 
  style.textContent=`
+
+ /* VICTORS POPUP */
+
  .victors-modal{
   display:none;
   position:fixed;
@@ -129,7 +132,9 @@ function injectVictorsStyles(){
   justify-content:center;
   padding:15px;
  }
+
  .victors-modal.show{display:flex}
+
  .victors-box{
   position:relative;
   width:100%;
@@ -143,7 +148,12 @@ function injectVictorsStyles(){
   color:#eee;
   box-shadow:0 10px 40px #0009;
  }
- .victors-box h2{color:#eee;margin:0 35px 8px 0}
+
+ .victors-box h2{
+  color:#eee;
+  margin:0 35px 8px 0;
+ }
+
  .victors-close{
   position:absolute;
   top:12px;
@@ -158,6 +168,7 @@ function injectVictorsStyles(){
   border-radius:6px;
   cursor:pointer;
  }
+
  .victor-entry{
   display:flex;
   justify-content:space-between;
@@ -168,14 +179,148 @@ function injectVictorsStyles(){
   border:1px solid #484848;
   border-radius:8px;
  }
- .victor-percent{color:#ccc;font-weight:bold}
+
+ .victor-percent{
+  color:#ccc;
+  font-weight:bold;
+ }
+
  .victors-trigger{
   background:#555;
   border:1px solid #666;
   color:white;
   cursor:pointer;
  }
+
  .victors-trigger:hover{background:#777}
+
+
+ /* MGDL TOP 3 DEMON AURAS */
+
+ .demon{
+  position:relative;
+  isolation:isolate;
+  overflow:visible;
+  transition:
+   box-shadow .35s ease,
+   transform .35s ease,
+   border-color .35s ease;
+ }
+
+ .demon.top-aura-gold{
+  border:1px solid rgba(255,215,0,.8);
+  box-shadow:
+   0 0 12px rgba(255,215,0,.35),
+   0 0 28px rgba(255,215,0,.18);
+ }
+
+ .demon.top-aura-silver{
+  border:1px solid rgba(192,192,192,.8);
+  box-shadow:
+   0 0 12px rgba(192,192,192,.35),
+   0 0 28px rgba(192,192,192,.18);
+ }
+
+ .demon.top-aura-bronze{
+  border:1px solid rgba(205,127,50,.8);
+  box-shadow:
+   0 0 12px rgba(205,127,50,.35),
+   0 0 28px rgba(205,127,50,.18);
+ }
+
+
+ /* AURA BEHIND THE CARDS */
+
+ .demon.top-aura-gold::before,
+ .demon.top-aura-silver::before,
+ .demon.top-aura-bronze::before{
+  content:"";
+  position:absolute;
+  inset:-14px;
+  border-radius:inherit;
+  z-index:-1;
+  pointer-events:none;
+  filter:blur(22px);
+  animation:mgdlAuraPulse 3s ease-in-out infinite;
+ }
+
+ .demon.top-aura-gold::before{
+  background:radial-gradient(
+   ellipse,
+   rgba(255,215,0,.65) 0%,
+   rgba(255,215,0,.25) 45%,
+   transparent 75%
+  );
+ }
+
+ .demon.top-aura-silver::before{
+  background:radial-gradient(
+   ellipse,
+   rgba(192,192,192,.65) 0%,
+   rgba(192,192,192,.25) 45%,
+   transparent 75%
+  );
+ }
+
+ .demon.top-aura-bronze::before{
+  background:radial-gradient(
+   ellipse,
+   rgba(205,127,50,.65) 0%,
+   rgba(205,127,50,.25) 45%,
+   transparent 75%
+  );
+ }
+
+
+ /* HOVER EFFECT */
+
+ .demon.top-aura-gold:hover{
+  transform:translateY(-5px);
+  box-shadow:
+   0 0 18px rgba(255,215,0,.55),
+   0 0 38px rgba(255,215,0,.3);
+ }
+
+ .demon.top-aura-silver:hover{
+  transform:translateY(-5px);
+  box-shadow:
+   0 0 18px rgba(192,192,192,.55),
+   0 0 38px rgba(192,192,192,.3);
+ }
+
+ .demon.top-aura-bronze:hover{
+  transform:translateY(-5px);
+  box-shadow:
+   0 0 18px rgba(205,127,50,.55),
+   0 0 38px rgba(205,127,50,.3);
+ }
+
+
+ /* ANIMATION */
+
+ @keyframes mgdlAuraPulse{
+  0%,100%{
+   opacity:.45;
+   transform:scale(.96);
+  }
+
+  50%{
+   opacity:1;
+   transform:scale(1.06);
+  }
+ }
+
+ @media(prefers-reduced-motion:reduce){
+  .demon.top-aura-gold::before,
+  .demon.top-aura-silver::before,
+  .demon.top-aura-bronze::before{
+   animation:none;
+  }
+
+  .demon{
+   transition:none;
+  }
+ }
  `;
 
  document.head.appendChild(style);
@@ -261,24 +406,36 @@ function renderDemons(filter=""){
 
  results.forEach(d=>{
   const card=document.createElement("article");
-  card.className="demon";
-  card.style.cursor="pointer";
 
   const rankClass =
    d.rank===1 ? "rank-gold" :
    d.rank===2 ? "rank-silver" :
    d.rank===3 ? "rank-bronze" : "";
 
+  const auraClass =
+   d.rank===1 ? "top-aura-gold" :
+   d.rank===2 ? "top-aura-silver" :
+   d.rank===3 ? "top-aura-bronze" : "";
+
+  card.className=`demon ${auraClass}`;
+  card.style.cursor="pointer";
+
   card.innerHTML=`
    <img src="https://img.youtube.com/vi/${d.video}/hqdefault.jpg"
    alt="${esc(d.name)}">
+
    <div class="info">
     <div class="top">
      <span class="rank ${rankClass}">#${d.rank}</span>
      <h3>${esc(d.name)}</h3>
     </div>
+
     <p>Difficulty: Extreme Demon</p>
-    <button class="victors-trigger" type="button">VICTORS</button>
+
+    <button class="victors-trigger" type="button">
+     VICTORS
+    </button>
+
     <a class="watch" target="_blank"
     rel="noopener noreferrer"
     href="https://youtube.com/watch?v=${encodeURIComponent(d.video)}">
@@ -432,6 +589,7 @@ function renderPlayers(filter=""){
     <b>${esc(player.name)}</b>
     <span class="points">${getPoints(player)} points</span>
    </div>
+
    <div class="player-actions">
     <button onclick="toggleCompletions(${i})">
      Edit completions
@@ -440,6 +598,7 @@ function renderPlayers(filter=""){
      Remove
     </button>
    </div>
+
    <div class="completions" id="completions-${i}">
     ${DEMONS.map(d=>`
      <label class="completion">
