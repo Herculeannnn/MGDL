@@ -1,315 +1,162 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="theme-color" content="#060914">
-    <meta name="description" content="Maldives Demonlist - Tracking the hardest Geometry Dash completions in Maldives.">
-    <title>MGDL - Home</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="app.js" defer></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101014">
+<title>MGDL - Home</title>
+<link rel="stylesheet" href="style.css">
+<script src="app.js" defer></script>
 </head>
 <body>
 
-<div class="bg" aria-hidden="true"></div>
+<button class="menu-toggle" type="button" onclick="toggleSidebar()" aria-label="Open navigation" aria-expanded="false">
+<svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+<path d="M4 6h16M4 12h16M4 18h16"/>
+</svg>
+</button>
 
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
-<div class="app-layout">
-    <div class="main-content">
-        <header class="topbar">
-            <div class="bar">
-                <a href="index.html" class="brand">
-                    <div class="mark">
-                        <svg class="i" viewBox="0 0 24 24">
-                            <path d="M4 4h16v16H4z"/>
-                            <path d="M9 4v16M15 4v16M4 9h16M4 15h16"/>
-                        </svg>
-                    </div>
-                    <div class="brand-text">
-                        <span class="brand-name">MGDL</span>
-                        <span class="brand-sub">Maldives Demonlist</span>
-                    </div>
-                </a>
+<aside class="sidebar" id="sidebar">
+<div class="brand">MGDL</div>
+<div class="sidebar-label">MAIN MENU</div>
 
-                <button class="icon-btn sidebar-toggle" id="menuToggle" onclick="toggleSidebar()" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">
-                    <svg class="i" viewBox="0 0 24 24">
-                        <path d="M4 6h16M4 12h16M4 18h16"/>
-                    </svg>
-                </button>
-            </div>
-        </header>
+<a href="index.html" data-page="index.html">
+<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>
+</svg>
+<span>Home</span>
+</a>
 
-        <main>
-            <section class="hero rv">
-                <span class="eyebrow">MALDIVES COMMUNITY PROJECT</span>
-                <h1>THE MALDIVES<br>TOP 150 DEMONLIST</h1>
-                <p>Tracking the hardest Geometry Dash completions in Maldives, maintained by Herculeannnn.</p>
+<a href="demonlist.html" data-page="demonlist.html">
+<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9z"/>
+</svg>
+<span>Demonlist</span>
+</a>
 
-                <div class="stats">
-                    <span class="chip">
-                        <svg class="i" viewBox="0 0 24 24">
-                            <path d="M12 3v18M3 12h18"/>
-                        </svg>
-                        <b id="levelCount">16</b>
-                        Ranked Levels
-                    </span>
+<a href="unrated.html" data-page="unrated.html">
+<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M8 3h8l4 4v14H4V3z"/>
+<path d="M8 3v5h8V3M8 13h8M8 17h8"/>
+</svg>
+<span>Unrated</span>
+</a>
 
-                    <span class="chip">
-                        <svg class="i" viewBox="0 0 24 24">
-                            <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9z"/>
-                        </svg>
-                        <b>150</b>
-                        Max Placements
-                    </span>
+<a href="players.html" data-page="players.html">
+<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+<circle cx="9" cy="7" r="4"/>
+<path d="M20 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+</svg>
+<span>Players</span>
+</a>
 
-                    <span class="chip">
-                        <svg class="i" viewBox="0 0 24 24">
-                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
-                            <circle cx="9" cy="7" r="4"/>
-                            <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
-                        </svg>
-                        <b id="playerCount">2</b>
-                        Ranked Players
-                    </span>
-                </div>
-            </section>
+<a href="prominent-runs.html" data-page="prominent-runs.html">
+<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>
+</svg>
+<span>Prominent Runs</span>
+</a>
 
-            <section class="panel rv">
-                <div class="panel-head">
-                    <h2 class="panel-title">Welcome to MGDL</h2>
-                    <span class="count">HOME</span>
-                </div>
+<a href="community.html" data-page="community.html">
+<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/>
+</svg>
+<span>Community</span>
+</a>
+</aside>
 
-                <div class="welcome-content">
-                    <div class="welcome-icon">
-                        <svg class="i" viewBox="0 0 24 24">
-                            <path d="m3 10.5 9-7 9 7.5"/>
-                            <path d="M5 9v12h14V9"/>
-                            <path d="M9 21v-7h6v7"/>
-                        </svg>
-                    </div>
+<div class="main-content">
 
-                    <div>
-                        <h3>Explore the Demonlist</h3>
-                        <p class="muted">Discover the hardest ranked levels, explore unrated completions, view player rankings and connect with the community.</p>
-                    </div>
-                </div>
-            </section>
+<header class="topbar">
+<div class="bar">
+<h1>MALDIVES DEMONLIST</h1>
+</div>
+</header>
 
-            <section class="quick-section rv">
-                <div class="section-heading">
-                    <div>
-                        <span class="eyebrow">DISCOVER</span>
-                        <h2>Explore MGDL</h2>
-                    </div>
-                </div>
+<main>
 
-                <div class="quick-grid">
-                    <a href="demonlist.html" class="quick-card">
-                        <div class="quick-icon">
-                            <svg class="i" viewBox="0 0 24 24">
-                                <path d="M8 21h8M12 17v4"/>
-                                <path d="M7 4h10l-1 8H8z"/>
-                                <path d="M7 6H4v2a4 4 0 0 0 4 4M17 6h3v2a4 4 0 0 1-4 4"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3>Demonlist</h3>
-                            <p>Browse ranked levels.</p>
-                        </div>
-                        <svg class="i quick-arrow" viewBox="0 0 24 24">
-                            <path d="m9 18 6-6-6-6"/>
-                        </svg>
-                    </a>
+<section class="hero">
+<div class="hero-content">
+<span class="chip">GEOMETRY DASH · MALDIVES</span>
+<h2>THE MALDIVES TOP 150 DEMONLIST</h2>
+<p class="muted">Tracking the hardest Geometry Dash completions in Maldives by Herculeannnn.</p>
+</div>
+</section>
 
-                    <a href="unrated.html" class="quick-card">
-                        <div class="quick-icon">
-                            <svg class="i" viewBox="0 0 24 24">
-                                <path d="M8 6h13M8 12h13M8 18h13"/>
-                                <path d="M3 6h.01M3 12h.01M3 18h.01"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3>Unrated</h3>
-                            <p>Explore unranked levels.</p>
-                        </div>
-                        <svg class="i quick-arrow" viewBox="0 0 24 24">
-                            <path d="m9 18 6-6-6-6"/>
-                        </svg>
-                    </a>
+<section class="stats">
+<div class="stat">
+<strong id="levelCount">16</strong>
+<span>RANKED LEVELS</span>
+</div>
 
-                    <a href="players.html" class="quick-card">
-                        <div class="quick-icon">
-                            <svg class="i" viewBox="0 0 24 24">
-                                <circle cx="9" cy="7" r="4"/>
-                                <path d="M2 21v-2a7 7 0 0 1 14 0v2"/>
-                                <path d="M19 8v6M22 11h-6"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3>Players</h3>
-                            <p>View ranked players.</p>
-                        </div>
-                        <svg class="i quick-arrow" viewBox="0 0 24 24">
-                            <path d="m9 18 6-6-6-6"/>
-                        </svg>
-                    </a>
+<div class="stat">
+<strong>150</strong>
+<span>MAX PLACEMENTS</span>
+</div>
 
-                    <a href="prominent-runs.html" class="quick-card">
-                        <div class="quick-icon">
-                            <svg class="i" viewBox="0 0 24 24">
-                                <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3>Prominent Runs</h3>
-                            <p>Discover notable completions.</p>
-                        </div>
-                        <svg class="i quick-arrow" viewBox="0 0 24 24">
-                            <path d="m9 18 6-6-6-6"/>
-                        </svg>
-                    </a>
+<div class="stat">
+<strong id="playerCount">2</strong>
+<span>RANKED PLAYERS</span>
+</div>
+</section>
 
-                    <a href="community.html" class="quick-card">
-                        <div class="quick-icon">
-                            <svg class="i" viewBox="0 0 24 24">
-                                <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3>Community</h3>
-                            <p>Explore the MGDL community.</p>
-                        </div>
-                        <svg class="i quick-arrow" viewBox="0 0 24 24">
-                            <path d="m9 18 6-6-6-6"/>
-                        </svg>
-                    </a>
-                </div>
-            </section>
-        </main>
+<section class="panel">
+<div class="panel-head">
+<h2 class="section-title">Welcome to MGDL</h2>
+</div>
+<p class="muted">Explore the ranked Demonlist, Unrated List, player leaderboard and community.</p>
+</section>
 
-        <footer class="foot">
-            <span>Maldives Demonlist</span>
-            <span>All rights reserved MPCTL™.</span>
-        </footer>
-    </div>
+</main>
 
-    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
-        <div class="sidebar-header">
-            <div class="brand">
-                <div class="mark">
-                    <svg class="i" viewBox="0 0 24 24">
-                        <path d="M4 4h16v16H4z"/>
-                        <path d="M9 4v16M15 4v16M4 9h16M4 15h16"/>
-                    </svg>
-                </div>
-                <div class="brand-text">
-                    <span class="brand-name">MGDL</span>
-                    <span class="brand-sub">Navigation</span>
-                </div>
-            </div>
+<footer class="foot">
+Maldives Demonlist — All rights reserved MPCTL™.
+</footer>
 
-            <button class="icon-btn sm sidebar-close" onclick="toggleSidebar(false)" aria-label="Close navigation">
-                <svg class="i" viewBox="0 0 24 24">
-                    <path d="m18 6-12 12M6 6l12 12"/>
-                </svg>
-            </button>
-        </div>
-
-        <div class="sidebar-label">MAIN MENU</div>
-
-        <nav class="sidebar-nav">
-            <a href="index.html" data-page="index.html">
-                <svg class="i" viewBox="0 0 24 24">
-                    <path d="m3 10 9-7 9 7"/>
-                    <path d="M5 9v12h14V9M9 21v-7h6v7"/>
-                </svg>
-                <span>Home</span>
-            </a>
-
-            <a href="demonlist.html" data-page="demonlist.html">
-                <svg class="i" viewBox="0 0 24 24">
-                    <path d="M8 21h8M12 17v4"/>
-                    <path d="M7 4h10l-1 8H8z"/>
-                    <path d="M7 6H4v2a4 4 0 0 0 4 4M17 6h3v2a4 4 0 0 1-4 4"/>
-                </svg>
-                <span>Demonlist</span>
-            </a>
-
-            <a href="unrated.html" data-page="unrated.html">
-                <svg class="i" viewBox="0 0 24 24">
-                    <path d="M8 6h13M8 12h13M8 18h13"/>
-                    <path d="M3 6h.01M3 12h.01M3 18h.01"/>
-                </svg>
-                <span>Unrated</span>
-            </a>
-
-            <a href="players.html" data-page="players.html">
-                <svg class="i" viewBox="0 0 24 24">
-                    <circle cx="9" cy="7" r="4"/>
-                    <path d="M2 21v-2a7 7 0 0 1 14 0v2"/>
-                    <path d="M19 8v6M22 11h-6"/>
-                </svg>
-                <span>Players</span>
-            </a>
-
-            <a href="prominent-runs.html" data-page="prominent-runs.html">
-                <svg class="i" viewBox="0 0 24 24">
-                    <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9z"/>
-                </svg>
-                <span>Prominent Runs</span>
-            </a>
-
-            <a href="community.html" data-page="community.html">
-                <svg class="i" viewBox="0 0 24 24">
-                    <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/>
-                </svg>
-                <span>Community</span>
-            </a>
-        </nav>
-
-        <div class="sidebar-footer">
-            <span class="sidebar-status"></span>
-            <span>MGDL Navigation</span>
-        </div>
-    </aside>
 </div>
 
 <script>
-function toggleSidebar(force) {
-    const sidebar = document.getElementById("sidebar");
-    const overlay = document.getElementById("sidebarOverlay");
-    const toggle = document.getElementById("menuToggle");
+function toggleSidebar(){
+ const sidebar=document.getElementById("sidebar");
+ const overlay=document.getElementById("sidebarOverlay");
+ const button=document.querySelector(".menu-toggle");
 
-    const shouldOpen = typeof force === "boolean"
-        ? force
-        : !sidebar.classList.contains("open");
+ const open=!sidebar.classList.contains("open");
 
-    sidebar.classList.toggle("open", shouldOpen);
-    overlay.classList.toggle("show", shouldOpen);
+ sidebar.classList.toggle("open",open);
+ overlay.classList.toggle("show",open);
 
-    toggle.setAttribute("aria-expanded", String(shouldOpen));
-    toggle.setAttribute("aria-label", shouldOpen ? "Close navigation" : "Open navigation");
-
-    document.body.classList.toggle("sidebar-open", shouldOpen);
+ button.setAttribute("aria-expanded",String(open));
+ button.setAttribute("aria-label",open?"Close navigation":"Open navigation");
 }
 
-const currentPage = location.pathname.split("/").pop() || "index.html";
+const currentPage=location.pathname.split("/").pop()||"index.html";
 
-document.querySelectorAll(".sidebar-nav a").forEach(link => {
-    if (link.dataset.page === currentPage) {
-        link.classList.add("active");
-        link.setAttribute("aria-current", "page");
-    }
-
-    link.addEventListener("click", () => toggleSidebar(false));
+document.querySelectorAll(".sidebar a").forEach(a=>{
+ if(a.dataset.page===currentPage){
+  a.classList.add("active");
+  a.setAttribute("aria-current","page");
+ }
 });
 
-document.addEventListener("keydown", event => {
-    if (event.key === "Escape") {
-        toggleSidebar(false);
-    }
+document.addEventListener("keydown",e=>{
+ if(e.key==="Escape"){
+  const sidebar=document.getElementById("sidebar");
+  if(sidebar.classList.contains("open")){
+   toggleSidebar();
+  }
+ }
+});
+
+document.querySelectorAll(".sidebar a").forEach(a=>{
+ a.addEventListener("click",()=>{
+  if(document.getElementById("sidebar").classList.contains("open")){
+   toggleSidebar();
+  }
+ });
 });
 </script>
 
