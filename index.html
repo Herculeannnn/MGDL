@@ -10,34 +10,35 @@
 </head>
 <body>
 
-<button class="menu-toggle" type="button" onclick="toggleSidebar()" aria-label="Open navigation" aria-expanded="false">
+<button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="sidebar">
 <svg viewBox="0 0 24 24" width="23" height="23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
 <path d="M4 6h16M4 12h16M4 18h16"/>
 </svg>
 </button>
 
-<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
 
 <aside class="sidebar" id="sidebar">
 <div class="brand">MGDL</div>
 <div class="sidebar-label">MAIN MENU</div>
 
+<nav class="sidebar-nav">
 <a href="index.html" data-page="index.html">
-<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<svg class="i" viewBox="0 0 24 24">
 <path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1z"/>
 </svg>
 <span>Home</span>
 </a>
 
 <a href="demonlist.html" data-page="demonlist.html">
-<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<svg class="i" viewBox="0 0 24 24">
 <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9z"/>
 </svg>
 <span>Demonlist</span>
 </a>
 
 <a href="unrated.html" data-page="unrated.html">
-<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<svg class="i" viewBox="0 0 24 24">
 <path d="M8 3h8l4 4v14H4V3z"/>
 <path d="M8 3v5h8V3M8 13h8M8 17h8"/>
 </svg>
@@ -45,7 +46,7 @@
 </a>
 
 <a href="players.html" data-page="players.html">
-<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<svg class="i" viewBox="0 0 24 24">
 <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
 <circle cx="9" cy="7" r="4"/>
 <path d="M20 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
@@ -54,25 +55,26 @@
 </a>
 
 <a href="prominent-runs.html" data-page="prominent-runs.html">
-<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<svg class="i" viewBox="0 0 24 24">
 <path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>
 </svg>
 <span>Prominent Runs</span>
 </a>
 
 <a href="community.html" data-page="community.html">
-<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+<svg class="i" viewBox="0 0 24 24">
 <path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/>
 </svg>
 <span>Community</span>
 </a>
+</nav>
 </aside>
 
 <div class="main-content">
 
 <header class="topbar">
 <div class="bar">
-<h1>MALDIVES DEMONLIST</h1>
+<h1 class="brand-name">MALDIVES DEMONLIST</h1>
 </div>
 </header>
 
@@ -103,11 +105,11 @@
 </div>
 </section>
 
-<section class="panel">
+<section class="panel welcome-panel">
 <div class="panel-head">
 <h2 class="section-title">Welcome to MGDL</h2>
 </div>
-<p class="muted">Explore the ranked Demonlist, Unrated List, player leaderboard and community.</p>
+<p class="muted welcome-text">Explore the ranked Demonlist, Unrated List, player leaderboard and community.</p>
 </section>
 
 </main>
@@ -119,45 +121,44 @@ Maldives Demonlist — All rights reserved MPCTL™.
 </div>
 
 <script>
-function toggleSidebar(){
- const sidebar=document.getElementById("sidebar");
- const overlay=document.getElementById("sidebarOverlay");
- const button=document.querySelector(".menu-toggle");
+(function(){
+ var sidebar=document.getElementById("sidebar");
+ var overlay=document.getElementById("sidebarOverlay");
+ var button=document.getElementById("menuToggle");
 
- const open=!sidebar.classList.contains("open");
-
- sidebar.classList.toggle("open",open);
- overlay.classList.toggle("show",open);
-
- button.setAttribute("aria-expanded",String(open));
- button.setAttribute("aria-label",open?"Close navigation":"Open navigation");
-}
-
-const currentPage=location.pathname.split("/").pop()||"index.html";
-
-document.querySelectorAll(".sidebar a").forEach(a=>{
- if(a.dataset.page===currentPage){
-  a.classList.add("active");
-  a.setAttribute("aria-current","page");
+ function setSidebar(open){
+  sidebar.classList.toggle("open",open);
+  overlay.classList.toggle("show",open);
+  button.setAttribute("aria-expanded",String(open));
+  button.setAttribute("aria-label",open?"Close navigation":"Open navigation");
  }
-});
 
-document.addEventListener("keydown",e=>{
- if(e.key==="Escape"){
-  const sidebar=document.getElementById("sidebar");
-  if(sidebar.classList.contains("open")){
-   toggleSidebar();
-  }
- }
-});
+ button.addEventListener("click",function(){
+  setSidebar(!sidebar.classList.contains("open"));
+ });
 
-document.querySelectorAll(".sidebar a").forEach(a=>{
- a.addEventListener("click",()=>{
-  if(document.getElementById("sidebar").classList.contains("open")){
-   toggleSidebar();
+ overlay.addEventListener("click",function(){
+  setSidebar(false);
+ });
+
+ document.addEventListener("keydown",function(e){
+  if(e.key==="Escape"){
+   setSidebar(false);
   }
  });
-});
+
+ var currentPage=location.pathname.split("/").pop()||"index.html";
+
+ document.querySelectorAll(".sidebar a").forEach(function(a){
+  if(a.dataset.page===currentPage){
+   a.classList.add("active");
+   a.setAttribute("aria-current","page");
+  }
+  a.addEventListener("click",function(){
+   setSidebar(false);
+  });
+ });
+})();
 </script>
 
 </body>
